@@ -56,36 +56,6 @@ export default function TrendingCreatorsTable(
   // const isMobile = false;
   const columns = TrendingCreatorColumns(activeTimeFilter, isMobile);
 
-  const mycolumns = React.useMemo(
-    () => [
-      {
-        Header: 'Rank',
-        columns: [
-          {
-            Header: 'Owners',
-            accessor: 'totalCollectors',
-          },
-          {
-            Header: 'NFTs sold',
-            accessor: 'totalNumSold',
-          },
-          {
-            Header: 'Primary Sales',
-            accessor: 'totalPrimaryVol',
-          },
-          {
-            Header: 'Secondary Sales',
-            accessor: 'totalSecondaryVol',
-          },
-          {
-            Header: 'Total Sales',
-            accessor: 'totalVol',
-          },
-        ],
-      },
-    ],
-    []
-  )
   const mydata = {
     oneDayVol: 2,
     oneDayNumSold: 3,

@@ -9,6 +9,8 @@ import Box from '~/components/base/Box';
 import { styled } from '~/stitches.config';
 import Flex from '~/components/base/Flex';
 import Grid from '~/components/base/Grid';
+import HeaderCreatorUploadLink from './HeaderCreatorUploadLink';
+import ConnectWalletButton from './ConnectWalletButton';
 
 interface MobileHeaderProps {
   viewportHeight: number;
@@ -34,6 +36,7 @@ export default function MobileHeader(props: MobileHeaderProps): JSX.Element {
           justifyContent: 'space-between',
           width: '100%',
           flex: 1,
+          backgroundColor:'white',
         }}
       >
         <Box>
@@ -48,7 +51,7 @@ export default function MobileHeader(props: MobileHeaderProps): JSX.Element {
                 fontSize: '$4',
                 letterSpacing: -1,
                 lineHeight: 1.2,
-                fontWeight: 600,
+                fontWeight: '$semibold',
                 '@bpxs': {
                   fontSize: '$3',
                 },
@@ -60,7 +63,19 @@ export default function MobileHeader(props: MobileHeaderProps): JSX.Element {
           ))}
         </Box>
         <Grid css={{ gridGap: '$6' }}>
-          {!isConnected && <ConnectWalletWideButton />}
+          <Box
+            css={{
+              button: {
+                width: '100%',
+              },
+            }}
+          >
+            {isConnected ? (
+              <HeaderCreatorUploadLink />
+            ) : (
+              <ConnectWalletButton />
+            )}
+          </Box>
           <Grid
             css={{
               gridTemplateColumns: '1fr 1fr',
@@ -78,7 +93,7 @@ export default function MobileHeader(props: MobileHeaderProps): JSX.Element {
                     display: 'block',
                     color: '$black30',
                     fontSize: '$0',
-                    fontWeight: 600,
+                    fontWeight: '$semibold',
                   }}
                 >
                   {navLink.children}
@@ -132,6 +147,11 @@ const mobileNavLinks = [
   {
     children: 'Instagram',
     href: 'https://www.instagram.com/withfoundation/',
+    external: true,
+  },
+  {
+    children: 'Mirror',
+    href: 'https://foundation.mirror.xyz',
     external: true,
   },
 ];

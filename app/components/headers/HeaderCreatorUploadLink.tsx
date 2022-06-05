@@ -1,7 +1,8 @@
 import Box from '~/components/base/Box';
 import Link from '~/components/base/Link';
 import Button from '~/components/base/Button';
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
+import {Link as RemixLink} from '@remix-run/react'
 
 export default function HeaderCreatorUploadLink(): JSX.Element {
   return (
@@ -12,7 +13,7 @@ export default function HeaderCreatorUploadLink(): JSX.Element {
         '@bp2': { display: 'block' },
       }}
     >
-      <NextLink href="/create" passHref>
+      <RemixLink to="/create">
         <Link
           css={{
             textDecoration: 'none',
@@ -45,7 +46,7 @@ export default function HeaderCreatorUploadLink(): JSX.Element {
             Create
           </Button>
         </Link>
-      </NextLink>
+      </RemixLink>
     </Box>
   );
 }

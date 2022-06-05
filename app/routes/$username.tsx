@@ -367,7 +367,7 @@ export default function UserProfilePage(props: { user: any; profileExists: any; 
               className={profileAboutBlockMobileStyles()}
             /> */}
           </Body>
-          <Outlet />
+          {/* <Outlet /> */}
         </Page>
       </Box>
     </>
