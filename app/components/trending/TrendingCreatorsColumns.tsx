@@ -78,7 +78,7 @@ export default function TrendingCreatorColumns(
         //   original: { user },
         // } = row;
         const user = {
-          profileImageUrl : "/images/svg-text/Blog1.png",
+          profileImageUrl : "/images/svg-text/blog1.png",
           publicKey : "1111",
           name : "fam"
         }

@@ -2,7 +2,7 @@ import { styled } from '~/stitches.config';
 
 const Card = styled('div', {
   backgroundColor: '$white100',
-  boxShadow: '$0',
+  boxShadow: '$card',
   transition: 'box-shadow $1 ease, transform $1 $ease',
   willChange: 'transform',
   borderRadius: '$2',
@@ -17,7 +17,7 @@ const Card = styled('div', {
           },
           '&:active': {
             transform: 'translateY(0)',
-            boxShadow: '$0',
+            boxShadow: '$card',
           },
         },
       },

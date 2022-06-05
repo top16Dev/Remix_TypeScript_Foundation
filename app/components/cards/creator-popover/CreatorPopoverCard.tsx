@@ -112,7 +112,7 @@ export default function CreatorPopoverCard(
               <Box css={{ marginBottom: '$6' }}>
                 <CircleAvatar
                   // imageUrl={user?.profileImageUrl}
-                  imageUrl="/images/svg-text/Blog1.png"
+                  imageUrl="/images/svg-text/blog1.png"
                   // publicKey={user?.publicKey}
                   publicKey = {"asdfsdf"}
                   maxSize={72}

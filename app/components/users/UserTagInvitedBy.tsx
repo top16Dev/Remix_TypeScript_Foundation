@@ -131,7 +131,7 @@ function UserTagInviteByContent(
   // const hasClaimedUsername = hasUsername(user);
   const hasClaimedUsername = true;
   const usernameOrAddress = "aaaa";
-  const avatarUrl = "/images/svg-text/Blog1.png";
+  const avatarUrl = "/images/svg-text/blog1.png";
   // const avatarUrl = user?.profileImageUrl;
 
   return (

@@ -19,7 +19,7 @@ export default function CircleAvatar(props: CircleAvatarProps): JSX.Element {
   const { maxSize = 32, publicKey, imageUrl, css } = props;
 
   // const avatarBackground = getAvatarByPublicKey(publicKey);
-  const avatarBackground = "/images/svg-text/Blog1.png";
+  const avatarBackground = "/images/svg-text/profile-1.png";
   return (
     <Box
       style={getBackgroundStyle(imageUrl, maxSize)}
@@ -51,7 +51,7 @@ const getBackgroundStyle = (imageUrl: string, size: number) => {
     // });
     return {
       // backgroundImage: `url(${buildAvatarUrl(imageUrl)})`,
-      backgroundImage: "/images/svg-text/Blog1.png",
+      backgroundImage: "/images/svg-text/profile-1.png",
     };
   }
   return null;

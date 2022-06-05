@@ -27,10 +27,10 @@ export default function FeaturedArtworkInfo(
   const collection={
     objectID : 12,
     name : "Family",
-    creator : "/images/svg-text/Blog1.png",
-    collectionImageUrl : "/images/svg-text/Blog1.png",
+    creator : "/images/svg-text/blog1.png",
+    collectionImageUrl : "/images/svg-text/blog1.png",
     symbol : "1231",
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     contractAddress:"asdfasdf",
     artworkCount:20,
   }
@@ -42,7 +42,7 @@ export default function FeaturedArtworkInfo(
         <Flex css={{ marginY: 'auto' }}>
           {/* <UserTag user={user} /> */}
           <UserTag />
-          {/* <UserTagV3 user={'/images/svg-text/Blog1.png'} /> */}
+          {/* <UserTagV3 user={'/images/svg-text/blog1.png'} /> */}
         </Flex>
       </ArtworkInfoBlock>
       <ArtworkInfoBlock>

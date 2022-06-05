@@ -7,7 +7,7 @@ const Overlay = styled(Box, {
   height: '100%',
   top: 0,
   left: 0,
-  background: '$blackT30',
+  // background: '$blackT30',
   width: '100%',
 });
 

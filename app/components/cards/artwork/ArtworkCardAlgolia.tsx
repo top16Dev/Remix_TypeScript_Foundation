@@ -60,8 +60,8 @@ export default function ArtworkCardAlgolia(
   //   artwork
   // );
   // const posterUrl = buildPosterUrl(artwork);
-  const assetUrl = "/images/svg-text/Blog1.png";
-  const posterUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
+  const posterUrl = "/images/svg-text/blog1.png";
   // const isAuctionMode =  artwork.availability === AlgoliaArtworkAvailability.LIVE_AUCTION ||
   //   auction?.status === AlgoliaAuctionStatus.ENDED;
   const isAuctionMode = true;

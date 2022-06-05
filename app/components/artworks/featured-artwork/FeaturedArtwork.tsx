@@ -126,7 +126,7 @@ export default function FeaturedArtwork(props: FeaturedArtwork): JSX.Element {
           <FeaturedArtworkButton
             // handleSegmentEvent={handleSegmentEvent}
             // artworkPath={artworkPath}
-            artworkPath='/images/svg-text/Blog1.png'
+            artworkPath='/images/svg-text/blog1.png'
             isLoading={isLoading}
           />
         </Grid>

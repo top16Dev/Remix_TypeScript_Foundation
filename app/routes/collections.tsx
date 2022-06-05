@@ -111,10 +111,10 @@ function CollectionResults(props: CollectionResultsProps) {
   const collection={
     objectID : 12,
     name : "Family",
-    creator : "/images/svg-text/Blog1.png",
-    collectionImageUrl : "/images/svg-text/Blog1.png",
+    creator : "/images/svg-text/blog1.png",
+    collectionImageUrl : "/images/svg-text/blog1.png",
     symbol : "1231",
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     contractAddress:"asdfasdf",
     artworkCount:20,
   }

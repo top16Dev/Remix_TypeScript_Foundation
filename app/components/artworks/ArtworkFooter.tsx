@@ -64,7 +64,7 @@ export default function ArtworkFooter(props: ArtworkFooterProps): JSX.Element {
   // const coverImage = isFndCollection
   //   ? buildArtworkFooterImageUrl(creator?.coverImageUrl)
   //   : buildArtworkFooterImageUrl(coverImageUrl);
-  const coverImage = "/images/svg-text/Blog1.png";
+  const coverImage = "/images/svg-text/blog1.png";
   // const emptyState = isEmptyOrNil(coverImage);
   const emptyState = false;
   const colorState = emptyState ? 'dark' : 'light';
@@ -143,7 +143,7 @@ export default function ArtworkFooter(props: ArtworkFooterProps): JSX.Element {
                     // imageUrl={buildImgixUrl(creator?.profileImageUrl, {
                     //   w: 350,
                     // })}
-                    imageUrl={"/images/svg-text/Blog1.png"}
+                    imageUrl={"/images/svg-text/blog1.png"}
                     publicKey={creator?.publicKey}
                   />
                   <Flex
@@ -229,7 +229,7 @@ export default function ArtworkFooter(props: ArtworkFooterProps): JSX.Element {
                         //   160,
                         //   collection.collectionImageUrl
                         // )}
-                        imageUrl={"/images/svg-text/Blog1.png"}
+                        imageUrl={"/images/svg-text/blog1.png"}
                         alt={collection.name}
                         appearance="frosted"
                         stroke={{ '@initial': 2, '@bp1': 3 }}

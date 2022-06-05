@@ -73,7 +73,7 @@ export default function UserDropdown(props: UserDropdownProps): JSX.Element {
         // isLoading={isLoading}
         isLoading = {false}
         // avatarUrl={avatarUrl}
-        avatarUrl = "/images/svg-text/Blog1.png"
+        avatarUrl = "/images/svg-text/blog1.png"
         // publicKey={publicKey}
         publicKey = "publicKey"
       />

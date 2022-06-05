@@ -54,7 +54,7 @@ export default function CollectionCard(
   const isEmptyState = false;
 
   // const coverImageUrl = buildCollectionCardUrl(collection.coverImageUrl);
-  const coverImageUrl = "/images/svg-text/Blog1.png";
+  const coverImageUrl = "/images/svg-text/blog1.png";
 
   // const collectionImageUrl = buildAvatarUrl(
   //   AVATAR_SIZE,

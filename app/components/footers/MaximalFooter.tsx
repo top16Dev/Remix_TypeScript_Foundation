@@ -1,289 +1,286 @@
 /* eslint-disable max-lines */
 /* eslint-disable react/jsx-max-depth */
-import { CSS } from '~/stitches.config';
-import { ReactNode } from 'react';
+// import NextLink from 'next/link';
+import { Link as RemixLink} from "@remix-run/react";
 
-import Box from '~/components/base/Box';
+import { H3Heading } from '~/components/base/Heading';
 import Body from '~/components/base/Body';
-import Flex from '~/components/base/Flex';
-import Divider from '~/components/base/Divider';
-import Text from '~/components/base/Text';
-import Button from '~/components/base/Button';
-import Link from '~/components/base/Link';
+import Box from '~/components/base/Box';
 import ExternalLink from '~/components/links/ExternalLink';
+import Flex from '~/components/base/Flex';
+import Link from '~/components/base/Link';
+import Logo from '~/assets/images/fnd-logo';
 
-import InstagramIcon from '~/assets/icons/instagram-icon';
-import TwitterIcon from '~/assets/icons/twitter-icon';
-import FNDLogo from '~/assets/images/fnd-logo';
+import { styled } from '~/stitches.config';
+import { SiteLink } from './types';
 
-interface SiteLink {
-  children: ReactNode;
-  href: string;
-  external?: boolean;
-  css?: CSS;
-}
+const adminLinks: SiteLink[] = [
+  {
+    children: 'Privacy Policy',
+    href: '/privacy',
+    css: {
+      color: '$black40',
+      fontSize: '$0',
+      '@bp2': {
+        fontSize: '$1',
+      },
+    },
+  },
+  {
+    children: 'Terms of Service',
+    href: '/terms',
+    css: {
+      color: '$black40',
+      fontSize: '$0',
+      '@bp2': {
+        fontSize: '$1',
+      },
+    },
+  },
+];
 
-const otherLinks: SiteLink[] = [
+const learnLinks: SiteLink[] = [
   {
-    children: 'About',
-    href: '/about',
+    children: 'Create',
+    href: '/how-to-create',
   },
   {
-    children: 'Blog',
-    href: '/blog',
+    children: 'Collect',
+    href: '/how-to-collect',
   },
   {
-    children: 'Press',
-    href: '/press',
+    children: 'Sell',
+    href: '/how-to-sell',
   },
-  { children: 'Careers', href: '/careers' },
+];
+
+const companyLinks: SiteLink[] = [
   {
-    children: 'Community Guidelines',
-    href: '/community-guidelines',
+    children: 'Careers',
+    href: '/careers',
   },
   {
-    children: 'Help',
-    href: 'https://help.foundation.app/',
+    children: 'Help Center',
+    href: 'https://help.foundation.app',
     external: true,
   },
 ];
 
-const adminLinks: SiteLink[] = [
+const connectLinks: SiteLink[] = [
   {
-    children: 'Terms of Service',
-    href: '/terms',
+    children: 'Twitter',
+    href: 'https://twitter.com/foundation',
+    external: true,
   },
   {
-    children: 'Privacy',
-    href: '/privacy',
+    children: 'Instagram',
+    href: 'https://instagram.com/withfoundation',
+    external: true,
+  },
+  {
+    children: 'Subscribe',
+    href: '/newsletters',
   },
 ];
 
 export default function MaximalFooter(): JSX.Element {
   return (
-    <Box
-      as="footer"
-      css={{
-        backgroundColor: '$black100',
-        color: '$black60',
-        paddingY: '$5',
-        zIndex: 1,
-        '@bp1': {
-          paddingY: '$8',
-        },
-      }}
-    >
-      <Body>
-        <Flex
-          css={{
-            paddingBottom: '$5',
-            flexDirection: 'column-reverse',
-            justifyContent: 'space-between',
-            '@bp1': {
-              paddingBottom: '$9',
-              flexDirection: 'row',
-            },
-          }}
-        >
-          <SubscribeModule />
-          <Flex
-            css={{
-              flexDirection: 'column',
-              '@bp1': {
-                textAlign: 'right',
-                alignItems: 'flex-end',
-              },
-            }}
-          >
-            {otherLinks.map((link, key) => (
-              <FooterLink
-                {...link}
-                key={key}
-                css={{ fontSize: '$3', lineHeight: 1.4 }}
-              />
-            ))}
-          </Flex>
-        </Flex>
-        <Divider css={{ backgroundColor: '$black80' }} />
-        <Flex
-          css={{
-            paddingTop: '$5',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            '@bp1': {
-              paddingTop: '$7',
-              flexDirection: 'row',
-            },
-          }}
-        >
-          <Box>
-            <Flex
-              css={{
-                flexDirection: 'column',
-                marginBottom: '$6',
-                '@bp1': {
-                  flexDirection: 'row',
-                  marginBottom: 'unset',
-                },
-              }}
-            >
-              <Box
-                css={{
-                  color: '$white100',
-                  marginRight: '$6',
-                  marginBottom: '$3',
-                }}
-              >
-                <FNDLogo width={65} />
-              </Box>
-              {adminLinks.map((link, key) => (
-                <FooterLink
-                  {...link}
-                  key={key}
-                  css={{
-                    paddingBottom: '$2',
-                    '@bp1': {
-                      paddingRight: '$6',
-                      paddingBottom: 0,
-                    },
-                  }}
-                />
+    <Footer>
+      <FooterBody>
+        <FooterLogo>
+          <RemixLink to="/">
+            <FooterLogoLink>
+              <Logo />
+            </FooterLogoLink>
+          </RemixLink>
+        </FooterLogo>
+        <OuterGrid>
+          <OuterGridBox>
+            <Links>
+              {adminLinks.map((props, index) => (
+                <FooterLink key={index} {...props} />
               ))}
-            </Flex>
-          </Box>
-          <Box>
-            <Flex
-              css={{
-                marginLeft: 0,
-                '@bp1': { marginLeft: '$6' },
-              }}
-            >
-              <FooterLink
-                href="https://www.instagram.com/withfoundation/"
-                external
-              >
-                <InstagramIcon
-                  width={24}
-                  height={24}
-                  style={{ marginRight: 16 }}
-                />
-              </FooterLink>
-              <FooterLink href="https://twitter.com/withfnd" external>
-                <TwitterIcon width={24} height={24} />
-              </FooterLink>
-            </Flex>
-          </Box>
-        </Flex>
-      </Body>
-    </Box>
-  );
-}
-
-function SubscribeModule() {
-  return (
-    <Box>
-      <Box
-        css={{
-          maxWidth: 290,
-          display: 'none',
-          '@bp1': { display: 'block' },
-        }}
-      >
-        <Text
-          css={{
-            fontFamily: '$body',
-            color: '$white100',
-            fontWeight: 600,
-            letterSpacing: -0.2,
-            fontSize: '$3',
-            marginBottom: '$2',
-          }}
-        >
-          Newsletters
-        </Text>
-        <Text
-          css={{
-            fontFamily: '$body',
-            color: '$black40',
-            fontWeight: 600,
-            fontSize: '$1',
-            lineHeight: 1.375,
-          }}
-        >
-          Stay up to date on new releases, interviews, events, and updates from
-          Foundation’s community.
-        </Text>
-      </Box>
-      <Button
-        color="black"
-        size="large"
-        shape="regular"
-        css={{
-          border: '1px solid $black80',
-          marginTop: '$7',
-          '@hover': {
-            '&:hover': {
-              backgroundColor: '$blue100',
-              borderColor: '$blue100',
-            },
-          },
-        }}
-      >
-        <Link
-          // to="/newsletters"
-          style={{
-            textDecoration: 'none',
-            display: 'block',
-            color: 'inherit',
-          }}
-        >
-          Subscribe
-        </Link>
-      </Button>
-    </Box>
+            </Links>
+          </OuterGridBox>
+          <OuterGridBox>
+            <InnerGrid>
+              <InnerGridBox>
+                <FooterHeading>Learn</FooterHeading>
+                <Links>
+                  {learnLinks.map((props, index) => (
+                    <FooterLink key={index} {...props} />
+                  ))}
+                </Links>
+              </InnerGridBox>
+              <InnerGridBox>
+                <FooterHeading>Company</FooterHeading>
+                <Links>
+                  {companyLinks.map((props, index) => (
+                    <FooterLink key={index} {...props} />
+                  ))}
+                </Links>
+              </InnerGridBox>
+              <InnerGridBox>
+                <FooterHeading>Connect</FooterHeading>
+                <Links>
+                  {connectLinks.map((props, index) => (
+                    <FooterLink key={index} {...props} />
+                  ))}
+                </Links>
+              </InnerGridBox>
+            </InnerGrid>
+          </OuterGridBox>
+        </OuterGrid>
+      </FooterBody>
+    </Footer>
   );
 }
 
 function FooterLink(props: SiteLink): JSX.Element {
   const { external, children, href, css } = props;
-
   if (external) {
     return (
-      <ExternalLink
-        css={{
-          color: '$black50',
-          '@hover': {
-            '&:hover': {
-              color: '$white100',
-            },
-          },
-          ...(css as any),
-        }}
+      <FooterExternalLink
+        css={css}
         href={href}
         rel="noopener noreferrer"
         target="_blank"
       >
         {children}
-      </ExternalLink>
+      </FooterExternalLink>
     );
   }
   return (
-    <Link href={href}
-      css={{
-        fontSize: '$0',
-        color: '$black50',
-        fontWeight: 600,
-        textDecoration: 'none',
-        transition: 'color $2 $ease',
-        '@hover': {
-          '&:hover': {
-            color: '$white100',
-          },
-        },
-        ...(css as any),
-      }}
-    >
-      {children}
-    </Link>
+    <RemixLink to={href}>
+      <FooterInternalLink css={css}>{children}</FooterInternalLink>
+    </RemixLink>
   );
 }
+
+const Footer = styled('footer', Box, {
+  backgroundColor: '$black100',
+});
+
+const FooterLogo = styled(Box, {
+  width: '100%',
+  color: '$black0',
+  marginBottom: '$7',
+  svg: {
+    width: 76,
+  },
+});
+
+const FooterBody = styled(Body, {
+  paddingY: '$10',
+});
+
+const Links = styled(Flex, {
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  a: {
+    marginBottom: '$4',
+    '&:last-child': {
+      marginBottom: 0,
+    },
+  },
+});
+
+const FooterExternalLink = styled(ExternalLink, {
+  fontSize: '$2',
+  color: '$black20',
+  '@hover': {
+    '&:hover': {
+      color: '$black0',
+    },
+  },
+});
+
+const FooterInternalLink = styled(Link, {
+  fontSize: '$2',
+  color: '$black20',
+  fontWeight: '$medium',
+  textDecoration: 'none',
+  transition: 'color $2 $ease',
+  '@hover': {
+    '&:hover': {
+      color: '$black0',
+    },
+  },
+});
+
+const FooterLogoLink = styled(Link, {
+  color: '$black0',
+  textDecoration: 'none',
+  transition: 'color $2 $ease',
+  '@hover': {
+    '&:hover': {
+      color: '$black30',
+    },
+  },
+});
+
+const FooterHeading = styled(H3Heading, {
+  color: '$black40',
+  fontSize: '$0',
+  letterSpacing: '$0',
+  fontWeight: '$medium',
+  marginBottom: '$5',
+  '@bp2': {
+    marginBottom: '$6',
+  },
+});
+
+const OuterGrid = styled(Flex, {
+  gap: '$8',
+  flexDirection: 'column-reverse',
+  '@bp2': {
+    gap: 0,
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});
+
+const OuterGridBox = styled(Box, {
+  '&:first-child': {
+    width: '100%',
+    '@bp2': {
+      width: '20%',
+    },
+    '@bp3': {
+      width: '30%',
+    },
+    '@bp4': {
+      width: '40%',
+    },
+  },
+  '&:last-child': {
+    width: '100%',
+    '@bp2': {
+      width: '80%',
+    },
+    '@bp3': {
+      width: '70%',
+    },
+    '@bp4': {
+      width: '60%',
+    },
+  },
+});
+
+const InnerGrid = styled(Flex, {
+  gap: '$8',
+  flexDirection: 'column',
+  '@bp2': {
+    gap: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+});
+
+const InnerGridBox = styled(Box, {
+  '@bp2': {
+    // marginLeft: 'auto',
+    width: '25%',
+  },
+});

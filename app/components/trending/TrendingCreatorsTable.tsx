@@ -52,8 +52,8 @@ export default function TrendingCreatorsTable(
   //   return d[queryField] > 0;
   // });
 
-  // const isMobile = !useMedia(config.media.bp2);
-  const isMobile = false;
+  const isMobile = !useMedia(config.media.bp2);
+  // const isMobile = false;
   const columns = TrendingCreatorColumns(activeTimeFilter, isMobile);
 
   const mycolumns = React.useMemo(

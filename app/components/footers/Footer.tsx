@@ -1,27 +1,22 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/jsx-max-depth */
-import { Link } from "@remix-run/react";
-
-import { CSS } from '~/stitches.config';
 import { includes } from 'ramda';
+// import NextLink from 'next/link';
+import { Link as RemixLink} from "@remix-run/react";
 import { ReactNode } from 'react';
+import { CSS } from '~/stitches.config';
 
 import Box from '~/components/base/Box';
 import Flex from '~/components/base/Flex';
 import Grid from '~/components/base/Grid';
 import Body from '~/components/base/Body';
-import MyLink from '~/components/base/Link'
+import Link from '~/components/base/Link';
 import { FooterLogoLink } from '~/components/links/LogoLink';
 import MaximalFooter from './MaximalFooter';
 
+import { SiteLink } from './types';
 import { PageType } from '~/types/page';
-
-interface SiteLink {
-  children: ReactNode;
-  href: string;
-  external?: boolean;
-}
 
 const socialLinks: SiteLink[] = [
   {
@@ -29,31 +24,25 @@ const socialLinks: SiteLink[] = [
     href: 'https://www.instagram.com/withfoundation/',
     external: true,
   },
-  { children: 'Twitter', href: 'https://twitter.com/withfnd', external: true },
-  { children: 'Blog', href: '/blog' },
+  {
+    children: 'Twitter',
+    href: 'https://twitter.com/foundation',
+    external: true,
+  },
 ];
 
 const otherLinks: SiteLink[] = [
-  {
-    children: 'About',
-    href: '/about',
-  },
-  {
-    children: 'Press',
-    href: '/press',
-  },
-  { children: 'Careers', href: '/careers' },
-  {
-    children: 'Community Guidelines',
-    href: '/community-guidelines',
-  },
+  { children: 'Careers', href: '/careers',
+  external: true, },
   {
     children: 'Terms of Service',
     href: '/terms',
+    external: true,
   },
   {
     children: 'Privacy',
     href: '/privacy',
+    external: true,
   },
   {
     children: 'Help',
@@ -64,11 +53,11 @@ const otherLinks: SiteLink[] = [
 
 interface FooterProps {
   type?: string;
-  footerStyle?: CSS;
+  css?: CSS;
 }
 
 export default function Footer(props: FooterProps): JSX.Element {
-  const { type, footerStyle } = props;
+  const { type, css = {} } = props;
 
   const shouldHideFooter = includes(type, [PageType.auth, PageType.minimal]);
 
@@ -78,8 +67,12 @@ export default function Footer(props: FooterProps): JSX.Element {
     return <></>;
   }
 
+  if (maximalFooter) {
+    return <MaximalFooter />;
+  }
+
   return (
-    <Box css={{ paddingY: '$8', ...(footerStyle as any) }}>
+    <Box css={{ paddingY: '$8', marginTop: 'auto', ...css }}>
       <Body>
         <Grid
           css={{
@@ -98,7 +91,9 @@ export default function Footer(props: FooterProps): JSX.Element {
             css={{ gridColumn: '1/3', '@bp1': { display: 'flex' } }}
           >
             {socialLinks.map((link, key) => (
-              <FooterLink {...link} key={key} />
+              <FooterLink key={key} href={link.href} external={link.external}>
+                {link.children}
+              </FooterLink>
             ))}
           </FooterLinkList>
           <FooterLinkList
@@ -108,7 +103,9 @@ export default function Footer(props: FooterProps): JSX.Element {
             }}
           >
             {otherLinks.map((link, key) => (
-              <FooterLink {...link} key={key} />
+              <FooterLink key={key} href={link.href} external={link.external}>
+                {link.children}
+              </FooterLink>
             ))}
           </FooterLinkList>
         </Grid>
@@ -124,17 +121,17 @@ interface FooterLinkListProps {
 
 function FooterLinkList(props: FooterLinkListProps): JSX.Element {
   const { children, css } = props;
-  return <Grid css={{ gap: 5, ...(css as any) }}>{children}</Grid>;
+  return <Grid css={{ gap: 5, ...css }}>{children}</Grid>;
 }
 
 function FooterLink(props: SiteLink): JSX.Element {
   const { external, children, href } = props;
 
-  const linkStyles: CSS = {
+  const css: CSS = {
     display: 'block',
     fontSize: '$0',
     color: '$black60',
-    fontWeight: 600,
+    fontWeight: '$semibold',
     textDecoration: 'none',
     marginRight: '$2',
     transition: 'color $1 $ease',
@@ -151,17 +148,25 @@ function FooterLink(props: SiteLink): JSX.Element {
 
   if (external) {
     return (
-      // <Link to={href} className="footer-link" css={linkStyles as any}>
-      <MyLink href={href} className="footer-link" css={linkStyles}>
+      <Link
+        className="footer-link"
+        css={css}
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+      >
         {children}
-      </MyLink>
+      </Link>
     );
   }
 
   return (
-      // <Link to={href} className="footer-link" css={linkStyles as any}>
-      <MyLink href={href} className="footer-link" css={linkStyles}>
+    // <NextLink href={href} passHref>
+    <RemixLink to={href}>
+      <Link className="footer-link" css={css}>
         {children}
-      </MyLink>
+      </Link>
+    </RemixLink>
+    // </NextLink>
   );
 }

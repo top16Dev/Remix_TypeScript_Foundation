@@ -60,7 +60,7 @@ export default function BlogIndex(props: { articles: any; }) {
 function FeaturedArticle(_props: any) {
   // const { article } = props;
 
-  const coverImageUrl = "/images/svg-text/Blog1.png";
+  const coverImageUrl = "/images/svg-text/blog1.png";
   const imageArgs = {
     q: 90,
     w: 630,

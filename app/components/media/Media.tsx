@@ -61,8 +61,8 @@ function MediaOfAnyType(props: MediaOfAnyTypeProps) {
 
   // const assetUrl = buildArtworkPageAssetUrl(artwork);
   // const posterUrl = buildPosterUrl(artwork);
-  const assetUrl = "/images/svg-text/Blog1.png";
-  const posterUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
+  const posterUrl = "/images/svg-text/blog1.png";
 
   // const isAssetUrlVideo = isVideo(assetUrl);
   const isAssetUrlVideo = false;

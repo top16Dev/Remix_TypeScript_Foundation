@@ -32,8 +32,8 @@ export default function FeaturedArtworkMedia(
 
   // const assetUrl = buildArtworkPageAssetUrl(artwork);
   // const posterUrl = buildPosterUrl(artwork);
-  const assetUrl = "/images/svg-text/Blog1.png";
-  const posterUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
+  const posterUrl = "/images/svg-text/blog1.png";
   // const isVideoUrl = isVideo(assetUrl);
   // const isModelUrl = isModel(assetUrl);
   const isModelUrl = false;

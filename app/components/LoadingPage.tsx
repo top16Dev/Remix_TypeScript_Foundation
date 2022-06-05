@@ -2,7 +2,7 @@ import { CSS } from '~/stitches.config';
 
 import Flex from '~/components/base/Flex';
 
-import SpinnerStroked from './SpinnerStroked';
+// import SpinnerStroked from './SpinnerStroked';
 
 interface LoadingPageProps {
   css?: CSS;

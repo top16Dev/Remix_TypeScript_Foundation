@@ -96,8 +96,8 @@ export default function UserProfilePage(props: { user: any; profileExists: any; 
     userIndex: 1,
     publicKey: "publickey",
     username: "username",
-    profileImageUrl: "/images/svg-text/Blog1.png",
-    coverImageUrl: "/images/svg-text/Blog1.png",
+    profileImageUrl: "/images/svg-text/blog1.png",
+    coverImageUrl: "/images/svg-text/blog1.png",
     name: "name",
     bio: "my bio",
     isApprovedCreator: true,
@@ -195,7 +195,7 @@ export default function UserProfilePage(props: { user: any; profileExists: any; 
 //   const hasCollectors = notEmptyOrNil(userCollectors);
     const hasCollectors = true;
     const currentUserIsAdmin = true;
-    const coverImageUrl = "/images/svg-text/Blog1.png";
+    const coverImageUrl = "/images/svg-text/blog1.png";
   return (
     <>
       {isModerated && (currentUserIsAdmin || isMyProfile) && (
@@ -229,7 +229,7 @@ export default function UserProfilePage(props: { user: any; profileExists: any; 
           // title={getProfilePageTitle(user)}
           title="asdfas"
           description="description"
-          image="/images/svg-text/Blog1.png"
+          image="/images/svg-text/blog1.png"
           headerMode={coverImageUrl ? PageColorMode.dark : PageColorMode.light}
           absolute
           type={PageType.maximal}
@@ -238,9 +238,9 @@ export default function UserProfilePage(props: { user: any; profileExists: any; 
             // creator={user}
             coverImage={coverImageUrl}
             // avatarBackground={getAvatarByPublicKey(user?.publicKey)}
-            avatarBackground={"/images/svg-text/Blog1.png"}
+            avatarBackground={"/images/svg-text/blog1.png"}
             // avatar={avatarUrl}
-            avatar = {"/images/svg-text/Blog1.png"}
+            avatar = {"/images/svg-text/blog1.png"}
             meta={
               <Flex
                 css={{

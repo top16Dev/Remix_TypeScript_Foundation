@@ -31,8 +31,8 @@ export default function CreatorCard(props: CreatorCardProps): JSX.Element {
   // const { meta, hideBiosOnMobile } = props;
 
   // const coverImageUrl = getCreatorCardHero(creator);
-  const coverImageUrl = "/images/svg-text/Blog1.png";
-  const avatarUrl = "/images/svg-text/Blog1.png";
+  const coverImageUrl = "/images/svg-text/blog1.png";
+  const avatarUrl = "/images/svg-text/blog1.png";
   // const avatarUrl = creator?.profileImageUrl;
 
   // const usernameOrAddress = getUsernameOrAddress(creator);

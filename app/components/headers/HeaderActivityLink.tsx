@@ -1,6 +1,7 @@
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
+import {Link as RemixLink, useLocation} from '@remix-run/react';
 import Box from '~/components/base/Box';
 import Text from '~/components/base/Text';
 import HeaderActivityCount from './HeaderActivityCount';
@@ -16,13 +17,13 @@ export default function HeaderActivityLink(
 ): JSX.Element {
   const { isDark, activityCount } = props;
 
-  const router = useRouter();
+  const router = useLocation();
   const currentPath = router.pathname;
   const href = '/activity';
 
   return (
     <Box>
-      <NextLink href={href} passHref>
+      {/* <NextLink href={href} passHref> */}
         <NavLink
           isDark={isDark}
           isActive={currentPath === href}
@@ -46,7 +47,7 @@ export default function HeaderActivityLink(
           </Text>
           {activityCount > 0 && <HeaderActivityCount count={activityCount} />}
         </NavLink>
-      </NextLink>
+      {/* </NextLink> */}
     </Box>
   );
 }

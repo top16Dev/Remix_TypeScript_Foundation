@@ -43,7 +43,7 @@ export default function Chiclet(props: ChicletProps) {
 
 const ChicletButton = styled(Button, {
   fontSize: '$2',
-  fontWeight: 600,
+  fontWeight: 'semibold',
   color: '$black60',
   cursor: 'pointer',
   backgroundColor: 'rgba(255, 255, 255, 0)',

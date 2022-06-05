@@ -96,8 +96,8 @@ export function ArtworkCard(props: ArtworkCardProps): JSX.Element {
   //   { h: 640, q: 80, quality: VideoAssetQuality.Preview },
   //   artwork
   // );
-  const assetUrl = "/images/svg-text/Blog1.png";
-  const posterUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
+  const posterUrl = "/images/svg-text/blog1.png";
   // const posterUrl = buildPosterUrl(artwork);
 
   // const mostRecentActiveAuction = getMostRecentAuction(artwork);
@@ -128,10 +128,10 @@ export function ArtworkCard(props: ArtworkCardProps): JSX.Element {
   const collection={
     objectID : 12,
     name : "@fasbas",
-    creator : "/images/svg-text/Blog1.png",
-    collectionImageUrl : "/images/svg-text/Blog1.png",
+    creator : "/images/svg-text/blog1.png",
+    collectionImageUrl : "/images/svg-text/blog1.png",
     symbol : "1231",
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     contractAddress:"@abasds",
     artworkCount:20,
   }

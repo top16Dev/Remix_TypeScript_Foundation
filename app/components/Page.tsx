@@ -11,6 +11,7 @@ import {
   modelImageAssetsHost,
 } from '~/lib/assets';
 
+
 import Header from '~/components/headers/Header';
 import Footer from '~/components/footers/Footer';
 
@@ -54,7 +55,7 @@ export default function Page(props: PageProps): JSX.Element {
         title={title}
       />
       {children}
-      <Footer footerStyle={footerStyle} type={type} />
+      <Footer css={footerStyle} type={type} />
     </>
   );
 }

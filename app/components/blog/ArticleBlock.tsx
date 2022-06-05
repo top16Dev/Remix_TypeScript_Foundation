@@ -20,7 +20,7 @@ export default function ArticleBlock(): JSX.Element {
   //   fit: 'pad',
   // };
 
-  const coverImageUrl = "/images/svg-text/Blog1.png";
+  const coverImageUrl = "/images/svg-text/blog1.png";
   return (
     // <NextLink href={`/blog/${article.slug}`} passHref prefetch={false}>
       <Flex

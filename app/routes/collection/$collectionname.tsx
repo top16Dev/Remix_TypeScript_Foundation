@@ -6,6 +6,7 @@
 //     GetStaticPropsResult,
 //   } from 'next';
 import { cond } from 'ramda';
+import { useLocation} from '@remix-run/react'
 //   import { useAccount } from 'wagmi';
   
   import Page from '~/components/Page';
@@ -67,6 +68,7 @@ import { cond } from 'ramda';
     } from '~/utils/collections';
   import { isFlaggedForModeration } from '~/utils/moderation';
 import { UserFragment } from '~/graphql/server/server-fragments.generated';
+import { useEffect, useState } from 'react';
   
   interface PageProps {
     collection: CollectionFragmentExtended;
@@ -103,29 +105,35 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
     // const { currentTab, tabs: visibleTabs } = useCollectionTabs({
     //   collection,
     // });
+    const [tab, setTab] = useState("nft");
+    const router = useLocation().pathname;
+    console.log(router);
     const visibleTabs = [
         {
             className:"",
-            value:"1",
-            isActive:true,
+            value:"nft",
+            isActive:tab === "nft" ? true : false,
             label:"NFT",
-            href:"/"
+            href:router + "?tab=nft",
         },
         {
             className:"",
-            value:"2",
-            isActive:false,
+            value:"description",
+            isActive:tab === "description" ? true : false,
             label:"Description",
-            href:"/"
+            href:router + "?tab=description",
         },
         {
             className:"",
-            value:"3",
-            isActive:false,
+            value:"activity",
+            isActive:tab === "activity" ? true : false,
             label:"Activity",
-            href:"/"
+            href:router + "?tab=activity",
         },
     ]
+    useEffect(() => {
+      visibleTabs.map((cur_Tab) => cur_Tab.isActive = cur_Tab.value === tab);
+    })
     // const emptyState = isEmptyOrNil(collection?.coverImageUrl);
     // const colorState = emptyState ? 'dark' : 'light';
   
@@ -198,11 +206,11 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
     //   : 'This collection has been removed.';
   
     const collection:CollectionFragment = {
-        coverImageUrl: "/images/svg-text/Blog1.png",
+        coverImageUrl: "/images/svg-text/blog1.png",
         name: "collection name",
         description: "collection description",
         symbol: "symbol",
-        collectionImageUrl: "/images/svg-text/Blog1.png",
+        collectionImageUrl: "/images/svg-text/blog1.png",
         contractAddress: "contractAddress",
         slug: "slug",
         createdAt: "createdAt",
@@ -214,7 +222,7 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
         hiddenAt: "hiddenAt",
         deletedAt: "deletedAt",
     }
-    const coverImageUrl = "/images/svg-text/Blog1.png";
+    const coverImageUrl = "/images/svg-text/blog1.png";
     return (
       <>
         {/* {isCollectionModerated && isAdminOrCurrentUserOwner && (
@@ -302,7 +310,7 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
                       },
                     }}
                     // imageUrl={buildAvatarUrl(160, collection.collectionImageUrl)}
-                    imageUrl="/images/svg-text/Blog1.png"
+                    imageUrl="/images/svg-text/blog1.png"
                   />
                 )}
                 <Box
@@ -358,7 +366,7 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
           </CollectionHeroContainer>
           <Body
             css={{
-              overflowX: 'hidden',
+              // overflowX: 'hidden',
               paddingTop: '$11',
             }}
           >
@@ -388,9 +396,19 @@ import { UserFragment } from '~/graphql/server/server-fragments.generated';
               />
             </Flex>
   
-            <TabsWithLinks tabs={visibleTabs} />
+            <TabsWithLinks tabs={visibleTabs} setTab={(curTab) => setTab(curTab)}/>
           {/* <TabsWithLinks<CollectionTab> tabs={visibleTabs} isScrollable /> */}
-  
+            {tab === 'nft' ? 
+            <CollectionArtworks
+            contractAddress={collection.contractAddress}
+            isOwnerOnCollection={false}
+            // isOwnerOnCollection={isCurrentUsersCollection}
+            isOwnerOrAdmin={false}
+            // isOwnerOrAdmin={isAdminOrCurrentUserOwner}
+            // unstyledCollection={unstyledCollection}
+            unstyledCollection={false}
+            isEmptyCollection={false}
+            /> : <></>}
             {/* {cond<CollectionTabValue, JSX.Element>([
               [
                 (tab) => isTabActive(tab, 'Artworks'),

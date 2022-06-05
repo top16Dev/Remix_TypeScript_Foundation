@@ -75,17 +75,17 @@ function ArtworkSearchResults(props:any){
   //   [hits]
   // );
   const user1 : AlgoliaUserBasic = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
     username: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     // username : "Family",
   }
   const creator1 : AlgoliaCollectionCreator = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     username : "Family",
   }
@@ -95,8 +95,8 @@ function ArtworkSearchResults(props:any){
     symbol: "Collection symbol",
     description: "collection description",
     contractAddress: "contract address",
-    collectionImageUrl: "/images/svg-text/Blog1.png",
-    coverImageUrl: "/images/svg-text/Blog1.png",
+    collectionImageUrl: "/images/svg-text/blog1.png",
+    coverImageUrl: "/images/svg-text/blog1.png",
     isHidden: false,
     createdAt: 4 ,
     slug: "collection slug",
@@ -116,10 +116,10 @@ function ArtworkSearchResults(props:any){
     status: AlgoliaAuctionStatus.OPEN,
   }
   const owner1: AlgoliaUserBasic = {
-    coverImageUrl: '/images/svg-text/Blog1.png',
+    coverImageUrl: '/images/svg-text/blog1.png',
     name: 'ownername',
     username: 'ownusername',
-    profileImageUrl: '/images/svg-text/Blog1.png',
+    profileImageUrl: '/images/svg-text/blog1.png',
     publicKey: 'ownpublickey'
   }
   const latestOffer1: AlgoliaOffer = {

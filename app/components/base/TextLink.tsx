@@ -6,7 +6,7 @@ const TextLink = styled(Link, {
   color: '$black60',
   cursor: 'pointer',
   transition: 'color $0 $ease',
-  fontWeight: 600,
+  fontWeight: '$semibold',
   textDecoration: 'none',
   '@hover': {
     '&:hover': {

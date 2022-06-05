@@ -94,9 +94,10 @@ export default function TrendingPage(): JSX.Element {
 
         <TrendingTabs
           tabs={[
+            TrendingTab.Collections,
             TrendingTab.Creators,
             TrendingTab.Collectors,
-            TrendingTab.Collections,
+            TrendingTab.Auctions,
           ]}
           currentView={activeTab}
           setCurrentView={(activeTab) => setActiveTab(activeTab)}

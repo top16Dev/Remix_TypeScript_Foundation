@@ -83,7 +83,7 @@ export default function BrowseHeaderTabs(props: BrowseHeaderTabsProps) {
   //     enabled: false,
   //   }
   // );
-  const router = useRouter();
+  const router = useLocation();
   const pathname = router.pathname;
   const isLoading = false;
   if (isLoading) {

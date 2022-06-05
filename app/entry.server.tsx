@@ -2,6 +2,8 @@ import type { EntryContext } from "@remix-run/cloudflare";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
+import { getCssText } from "~/stitches.config";
+
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
@@ -10,6 +12,11 @@ export default function handleRequest(
 ) {
   let markup = renderToString(
     <RemixServer context={remixContext} url={request.url} />
+  );
+
+  markup = markup.replace(
+    /<style id="stitches">.*<\/style>/g,
+    `<style id="stitches">${getCssText()}</style>`
   );
 
   responseHeaders.set("Content-Type", "text/html");

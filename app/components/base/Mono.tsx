@@ -1,28 +1,20 @@
 import { styled } from '~/stitches.config';
+import Text from '~/components/base/Text';
 
-const Mono = styled('div', {
+const Mono = styled(Text, {
   fontFamily: '$mono',
-  fontWeight: 400,
-  letterSpacing: '$mono',
+  fontWeight: '$regular',
   variants: {
-    tight: {
-      true: {
-        letterSpacing: 0,
-      },
-    },
-    uppercase: {
-      true: {
-        textTransform: 'uppercase',
-      },
-    },
+    // The monospaced font looks quite chunky compared to the body font
+    // This scale reduces the font size to make it match
     size: {
-      0: { fontSize: '$0' },
-      1: { fontSize: '$1' },
-      2: { fontSize: '$2' },
-      3: { fontSize: '$3' },
-      4: { fontSize: '$4' },
-      5: { fontSize: '$5' },
-      6: { fontSize: '$6' },
+      0: { fontSize: '13px' }, // $0 - 1px
+      1: { fontSize: '15px' }, // $1 - 1px
+      2: { fontSize: '17px' }, // $2 - 1px
+      3: { fontSize: '23px' }, // $3 - 1px
+      4: { fontSize: '34px' }, // $4 - 2px
+      5: { fontSize: '44px' }, // $5 - 2px
+      6: { fontSize: '52px' }, // $6 - 4px
     },
   },
 });

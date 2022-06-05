@@ -56,12 +56,12 @@ export default function UserTagInline(props: UserTagInlineProps) {
 
   // const avatarImageUrl = buildAvatarUrl(avatarSize, user.profileImageUrl);
   
-  // const avatarImageUrl = buildAvatarUrl(avatarSize, "/images/svg-text/Blog1.png");
+  // const avatarImageUrl = buildAvatarUrl(avatarSize, "/images/svg-text/blog1.png");
   // // const { usernameOrAddress, hasUsername, userPath } =
   // //   getUsernameOrAddressInfo(user);
   // const usernameOrAddress = "@codeStar";
   // const hasUsername = true;
-  // const userPath = "/images/svg-text/Blog1.png";
+  // const userPath = "/images/svg-text/blog1.png";
   return (
     <MaybeRenderPopover
       disablePopover={disablePopover}
@@ -92,7 +92,7 @@ export default function UserTagInline(props: UserTagInlineProps) {
                     // publicKey={user.publicKey}
                     publicKey="11fsdbasdf"
                     maxSize={avatarSize}
-                    imageUrl="/images/svg-text/Blog1.png"
+                    imageUrl="/images/svg-text/blog1.png"
                     css={{ width: avatarSize, height: avatarSize }}
                   />
                 ))}

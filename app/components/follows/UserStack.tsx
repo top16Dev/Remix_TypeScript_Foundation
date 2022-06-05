@@ -68,7 +68,7 @@ function UserStackElement<T extends SingleUserStackElement>(
           // publicKey={user.publicKey}
           publicKey="12fbsd"
           // imageUrl={user.profileImageUrl}
-          imageUrl="/images/svg-text/Blog1.png"
+          imageUrl="/images/svg-text/blog1.png"
           css={{
             border: 'solid 3px $white100',
             marginRight: '-$2 !important',

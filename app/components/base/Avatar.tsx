@@ -6,16 +6,26 @@ import Box from './Box';
 
 const AvatarBackground = styled(Box, {
   display: 'block',
+  position: 'relative',
   variants: {
     shape: {
       1: {
         borderRadius: 'calc($1 + $space$1)',
+        '&:after': {
+          borderRadius: 'calc($1 + $space$1)',
+        },
       },
       2: {
         borderRadius: 'calc($2 + $space$2)',
+        '&:after': {
+          borderRadius: 'calc($2 + $space$2)',
+        },
       },
       round: {
         borderRadius: '$round',
+        '&:after': {
+          borderRadius: '$round',
+        },
       },
     },
     stroke: {
@@ -35,8 +45,11 @@ const AvatarBackground = styled(Box, {
         boxShadow: '$0',
       },
       frosted: {
-        background: 'rgba(255, 255, 255, 0.2)',
+        background: '$whiteT20',
         backdropFilter: 'blur(6px)',
+      },
+      gray: {
+        background: '$whiteT20',
       },
     },
   },

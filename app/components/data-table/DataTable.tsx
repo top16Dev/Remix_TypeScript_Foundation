@@ -156,8 +156,8 @@ export default function DataTable<T1 extends Record<string, unknown>>(
     useFlexLayout
   );
 
-  // const isMobile = !useMedia(config.media.bp2);
-  const isMobile = false;
+  const isMobile = !useMedia(config.media.bp2);
+  // const isMobile = false;
   useEffect(() => {
     if (!isMobile) {
       toggleHideAllColumns(false);

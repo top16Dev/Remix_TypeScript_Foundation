@@ -3,7 +3,6 @@ import { styled } from '~/stitches.config';
 const Input = styled('input', {
   fontFamily: '$body',
   lineHeight: 1,
-  fontSize: '$2',
   minHeight: 54,
   display: 'flex',
   alignItems: 'center',
@@ -13,8 +12,11 @@ const Input = styled('input', {
   paddingRight: '$5',
   transition: '$1',
   transitionProperty: 'box-shadow',
-  fontWeight: 600,
-
+  fontWeight: '$semibold',
+  fontSize: '$1',
+  '@bp0': {
+    fontSize: '$2',
+  },
   '&:focus': {
     outline: 'none',
   },
@@ -29,7 +31,8 @@ const Input = styled('input', {
   variants: {
     color: {
       translucent: {
-        backgroundColor: '$white20',
+        backgroundColor: '$whiteT20',
+        backdropFilter: 'blur(10px)',
         color: '$white100',
         '&:focus, &[data-active=true]': {
           backgroundColor: '$white100',

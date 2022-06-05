@@ -1,8 +1,8 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 import { useWeb3React } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
-import { useRouter } from 'next/router';
-
+// import { useRouter } from 'next/router';
+import {useLocation} from '@remix-run/react';
 import useWalletLocalStorage from './use-wallet-local-storage';
 import useDisconnectWalletSession from './use-disconnect-wallet-session';
 
@@ -18,7 +18,8 @@ export default function useDisconnectWallet(
 ) {
   const web3React = useWeb3React<Web3Provider>();
 
-  const router = useRouter();
+  const router = useLocation();
+  // const router = useRouter();
 
   const { setLatestOp, resetWalletConnectState } = useWalletLocalStorage();
   const { mutateAsync: disconnectWalletSession } = useDisconnectWalletSession();

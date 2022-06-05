@@ -44,7 +44,7 @@ export default function CollectionTag(props: CollectionTagProps): JSX.Element {
   //   size,
   //   collection.collectionImageUrl
   // );
-  const collectionImageUrl = "/images/svg-text/Blog1.png";
+  const collectionImageUrl = "/images/svg-text/blog1.png";
 
   return (
     // <CollectionPopover collection={collection} user={user}>

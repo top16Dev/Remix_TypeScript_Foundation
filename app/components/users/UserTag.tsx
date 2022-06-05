@@ -112,7 +112,7 @@ export default function UserTag(props: UserTagProps) {
     publicKey : "11231",
   }
 //   const avatarImageUrl = buildAvatarUrl(avatarSize, user.profileImageUrl);
-  const avatarImageUrl = "/images/svg-text/Blog1.png"
+  const avatarImageUrl = "/images/svg-text/blog1.png"
 //   const { usernameOrAddress, hasUsername, userPath } =
 //     getUsernameOrAddressInfo(user);
   const usernameOrAddress = "@absd";
@@ -148,7 +148,7 @@ export default function UserTag(props: UserTagProps) {
                   publicKey={user.publicKey}
                   maxSize={avatarSize}
                   css={{ width: avatarSize, height: avatarSize }}
-                  imageUrl={'/images/svg-text/Blog1.png'}
+                  imageUrl={'/images/svg-text/blog1.png'}
                   />
                 ))}
             </Box>

@@ -29,13 +29,13 @@ import Mono from '~/components/base/Mono';
 export default function BlogArticle(props: { article: any; }) {
 //   const { article } = props;
     const article = {
-        coverImage : "/images/svg-text/Blog1.png",
+        coverImage : "/images/svg-text/blog1.png",
         title : "bsdwe",
         shortDescription : "Digital culture evolves quickly; so does its commercialization. The visionary artist has always managed to stay ahead of the curve.",
         datePosted : "PUBLISHED 27 MARCH 2022",
         content : "asdfa",
         author : {
-        avatar : "/images/svg-text/Blog1.png",
+        avatar : "/images/svg-text/profile-1.png",
             name : "family",
             role : "asdf",
         },
@@ -50,8 +50,8 @@ export default function BlogArticle(props: { article: any; }) {
 //   });
 
 //   const avatarUrl = buildAvatarUrl(article?.author?.avatar);
-    const coverImageUrl = "/images/svg-text/Blog1.png";
-    const avatarUrl = "/images/svg-text/Blog1.png";
+    const coverImageUrl = "/images/svg-text/blog1.png";
+    const avatarUrl = "/images/svg-text/profile-1.png";
 
 //   if (router.isFallback) {
 //     return <LoadingPage />;

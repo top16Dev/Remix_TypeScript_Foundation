@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-imports */
+import { CSSProperties } from '@stitches/react';
 import { CSS, globalCss } from '~/stitches.config';
 
 export const globalStyles = globalCss({
@@ -45,7 +46,7 @@ type CanvasBackgroundOptions = {
 export const createCanvasBackground = ({
   imageUrl,
   patternBackgroundSize = 'auto',
-}: CanvasBackgroundOptions): CSS => {
+}: CanvasBackgroundOptions): CSSProperties => {
   const patternLayer = 'url(/images/patterns/canvas-grid.svg)';
   const tintLayer = createBackgroundImageColorLayer(0, 0, 0, 0.2);
   const imageLayer = `url(${imageUrl})`;

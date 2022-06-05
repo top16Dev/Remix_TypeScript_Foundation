@@ -68,7 +68,7 @@ export default function NavLinks(props: NavLinksProps): JSX.Element {
   const { isDark, isLoggedIn = false } = props;
 
   // const router = useRoutes();
-  const currentPath = useRouter().pathname;
+  const currentPath = useLocation().pathname;
   // const currentPath = '/about';
   const ref = useRef(null);
 

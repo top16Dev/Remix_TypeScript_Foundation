@@ -9,26 +9,23 @@ const Button = styled('button', {
   appearance: 'none',
   fontFamily: '$body',
   fontSize: '$1',
-  fontWeight: 600,
+  fontWeight: '$semibold',
   cursor: 'pointer',
-
   willChange: 'transform',
   transition:
     'transform $1 $ease, box-shadow $1 $ease, background-color $1 $ease, color $1 $ease',
-
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-
   textAlign: 'center',
   textDecoration: 'none',
-
   border: 'none',
-
   '&:disabled': {
-    pointerEvents: 'none',
+    pointerEvents: 'none !important',
   },
-
+  '&:focus-visible': {
+    outline: '2px solid blue',
+  },
   variants: {
     appearance: {
       ghost: {
@@ -36,11 +33,30 @@ const Button = styled('button', {
       },
       outline: {},
     },
+    disabled: {
+      true: {
+        pointerEvents: 'none',
+      },
+    },
     color: {
       black: {
         backgroundColor: '$black100',
         color: '$white100',
+        border: '2px solid $black100',
       },
+      darkGray: {
+        color: '$white100',
+        backgroundColor: '$black90',
+        border: 'solid 2px $white100',
+        '@hover': {
+          '&:hover': {
+            backgroundColor: '$white100',
+            color: '$black100',
+            borderColor: '$white100',
+          },
+        },
+      },
+      // only used for Disabled buttons
       gray: {
         color: '$black100',
         backgroundColor: '$black10',
@@ -49,6 +65,7 @@ const Button = styled('button', {
         backgroundColor: '$white100',
         color: '$black100',
         border: 'solid 2px $black10',
+
         '@hover': {
           '&:hover': {
             backgroundColor: '$black100',
@@ -66,6 +83,10 @@ const Button = styled('button', {
           },
         },
       },
+      green: {
+        backgroundColor: '$green10',
+        color: '#2D7B55',
+      },
       red: {
         backgroundColor: '$red100',
         color: '$white100',
@@ -77,6 +98,11 @@ const Button = styled('button', {
       },
     },
     size: {
+      small: {
+        minHeight: 36,
+        paddingX: '$2',
+        fontSize: '$0',
+      },
       regular: {
         minHeight: 46,
         paddingX: '$2',
@@ -119,7 +145,7 @@ const Button = styled('button', {
       appearance: 'ghost',
       css: {
         backgroundColor: 'rgba(255, 255, 255, 0)',
-        border: 'solid 2px rgba(102, 102, 102, 0.8)',
+        borderColor: '$whiteT40',
         '@hover': {
           '&:hover': {
             backgroundColor: '$black100',
@@ -148,6 +174,38 @@ const Button = styled('button', {
           '&:hover': {
             backgroundColor: '$black100',
             color: '$white100',
+          },
+        },
+      },
+    },
+    {
+      color: 'white',
+      disabled: true,
+      css: {
+        backgroundColor: '$black10',
+      },
+    },
+    {
+      color: 'darkGray',
+      disabled: true,
+      css: {
+        borderColor: '$black90',
+        color: '$black30',
+      },
+    },
+    {
+      hoverable: true,
+      disabled: true,
+      css: {
+        pointerEvents: 'none',
+        '@hover': {
+          '&:hover': {
+            transform: 'unset',
+            boxShadow: 'unset',
+          },
+          '&:active': {
+            transform: 'unset',
+            boxShadow: 'unset',
           },
         },
       },

@@ -24,7 +24,7 @@ export default function Tabs<T extends string | number>(
     <TabBar>
       {tabs.map((tab) => (
         <TabHeading
-          weight={600}
+          weight="semibold"
           size={{ '@initial': 1, '@bp0': 2 }}
           key={tab}
           isActive={currentView === tab}
@@ -60,7 +60,7 @@ export function TabsWithLabels<T extends Tab, U extends string>(
       <TabContainer>
         {tabs.map((tab) => (
           <TabHeading
-            weight={600}
+            weight="semibold"
             size={{
               '@initial': 1,
               '@bp0': 2,
@@ -81,6 +81,7 @@ interface TabsWithLinksProps<T, U> {
   // tabs: T[];
   tabs: any[];
   isScrollable?: boolean;
+  setTab : (arg0: string) => void;
 }
 
 export type TabLink = Tab & {
@@ -91,7 +92,7 @@ export type TabLink = Tab & {
 export function TabsWithLinks<T extends TabLink, U extends string>(
   props: TabsWithLinksProps<T, U>
 ): JSX.Element {
-  const { tabs, isScrollable = false } = props;
+  const { tabs, isScrollable = true, setTab } = props;
 
   return (
     <TabBar isScrollable={isScrollable}>
@@ -104,7 +105,7 @@ export function TabsWithLinks<T extends TabLink, U extends string>(
           //   passHref
           //   shallow
           // >
-          <RemixLink key={tab.value} to={tab.href} style={{textDecoration:"none", color:"black"}}>
+          <RemixLink key={tab.value} to={tab.href} style={{textDecoration:"none", color:"black"}} onClick={() => setTab(tab.value)}>
             <Link
             css={{
               display: 'block',

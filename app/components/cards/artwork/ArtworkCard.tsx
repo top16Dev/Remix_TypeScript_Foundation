@@ -71,7 +71,7 @@ export default function ArtworkCard(props: ArtworkCardProps) {
 //   if (!artwork) {
 //     return <ArtworkCardSkeleton />;
 //   }
-  const assetUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
 //   const assetUrl = buildArtworkAssetUrl(
 //     {
 //       h: 640,
@@ -87,7 +87,7 @@ export default function ArtworkCard(props: ArtworkCardProps) {
 
 //   const artworkPath = buildArtworkPath({ artwork, user: creator });
 //   const posterUrl = buildPosterUrl(artwork);
-  const posterUrl = "/images/svg-text/Blog1.png";
+  const posterUrl = "/images/svg-text/blog1.png";
 //   const hasSplits = artwork?.splitRecipients?.aggregate?.count > 0;
   const hasSplits = false;
 //   const priorityMarket = getPriorityMarketFromArtwork(artwork);

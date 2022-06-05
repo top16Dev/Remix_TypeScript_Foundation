@@ -129,17 +129,17 @@ export default function ArtworkIndexPage(props: ArtworkPageData): JSX.Element {
     const router = useLocation();
     
   const user1 : AlgoliaUserBasic = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
     username: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     // username : "Family",
   }
   const creator1 : AlgoliaCollectionCreator = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     username : "Family",
   }
@@ -149,8 +149,8 @@ export default function ArtworkIndexPage(props: ArtworkPageData): JSX.Element {
     symbol: "Collection symbol",
     description: "collection description",
     contractAddress: "contract address",
-    collectionImageUrl: "/images/svg-text/Blog1.png",
-    coverImageUrl: "/images/svg-text/Blog1.png",
+    collectionImageUrl: "/images/svg-text/blog1.png",
+    coverImageUrl: "/images/svg-text/blog1.png",
     isHidden: false,
     createdAt: 4 ,
     slug: "collection slug",
@@ -170,10 +170,10 @@ export default function ArtworkIndexPage(props: ArtworkPageData): JSX.Element {
     status: AlgoliaAuctionStatus.OPEN,
   }
   const owner1: AlgoliaUserBasic = {
-    coverImageUrl: '/images/svg-text/Blog1.png',
+    coverImageUrl: '/images/svg-text/blog1.png',
     name: 'ownername',
     username: 'ownusername',
-    profileImageUrl: '/images/svg-text/Blog1.png',
+    profileImageUrl: '/images/svg-text/blog1.png',
     publicKey: 'ownpublickey'
   }
   const latestOffer1: AlgoliaOffer = {
@@ -263,7 +263,7 @@ export default function ArtworkIndexPage(props: ArtworkPageData): JSX.Element {
           description={"truncatedDescription"}
         //   headerMode={headerMode}
         //   image={posterUrl ?? openGraphAsset}
-          image="/images/svg-text/Blog1.png"
+          image="/images/svg-text/blog1.png"
           absolute={true}
         //   footerCss={{ display: 'none' }}
           type={PageType.maximal}

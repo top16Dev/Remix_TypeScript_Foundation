@@ -42,17 +42,17 @@ export function ArtworkCardSearch(props: ArtworkCardSearchProps): JSX.Element {
   // const { artwork } = props;
 
   const user1 : AlgoliaUserBasic = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
     username: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     // username : "Family",
   }
   const creator1 : AlgoliaCollectionCreator = {
-    coverImageUrl : "/images/svg-text/Blog1.png",
+    coverImageUrl : "/images/svg-text/blog1.png",
     name: "Family",
-    profileImageUrl : "/images/svg-text/Blog1.png",
+    profileImageUrl : "/images/svg-text/blog1.png",
     publicKey : "0x12asdfasdb",
     username : "Family",
   }
@@ -62,8 +62,8 @@ export function ArtworkCardSearch(props: ArtworkCardSearchProps): JSX.Element {
     symbol: "Collection symbol",
     description: "collection description",
     contractAddress: "contract address",
-    collectionImageUrl: "/images/svg-text/Blog1.png",
-    coverImageUrl: "/images/svg-text/Blog1.png",
+    collectionImageUrl: "/images/svg-text/blog1.png",
+    coverImageUrl: "/images/svg-text/blog1.png",
     isHidden: false,
     createdAt: 4 ,
     slug: "collection slug",
@@ -105,8 +105,8 @@ export function ArtworkCardSearch(props: ArtworkCardSearchProps): JSX.Element {
     collection: collection1,
   };
   // const posterUrl = buildPosterUrl(artwork);
-  const assetUrl = "/images/svg-text/Blog1.png"
-  const posterUrl = "/images/svg-text/Blog1.png"
+  const assetUrl = "/images/svg-text/blog1.png"
+  const posterUrl = "/images/svg-text/blog1.png"
   
   const { creator, auction } = artwork;
 

@@ -161,7 +161,7 @@ export default function ArtworkPage(props: ArtworkPageProps): JSX.Element {
   //   };
   // }, []);
   const isModelMedia = false;
-  const assetUrl = "/images/svg-text/Blog1.png";
+  const assetUrl = "/images/svg-text/blog1.png";
   const isCreatorLoading = false;
   const pageContext = 'artwork-page';
   const isFndCollection = false;
