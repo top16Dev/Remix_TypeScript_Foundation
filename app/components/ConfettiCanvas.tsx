@@ -63,5 +63,5 @@ export default function ConfettiCanvas(
     }
   }, [fireConfetti, fire]);
 
-  return null;
+  return <></>;
 }

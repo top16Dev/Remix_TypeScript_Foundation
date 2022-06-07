@@ -1,5 +1,5 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
-// import { formatEther, parseUnits } from '@ethersproject/units';
+import { formatEther, parseUnits } from '@ethersproject/units';
 import { compose } from 'ramda';
 
 // export const fromBNDec = compose<BigNumber, string, number>(
@@ -7,10 +7,10 @@ import { compose } from 'ramda';
 //   formatEther
 // );
 
-// export const toBNFixed = (n: BigNumberish): string => {
-//   const value = n.toString();
-//   return parseUnits(value).toString();
-// };
+export const toBNFixed = (n: BigNumberish): string => {
+  const value = n.toString();
+  return parseUnits(value).toString();
+};
 
 // ignores 0 and null values when searching for a min in an array
 export const nonZeroMin = (values: number[]): number | null => {

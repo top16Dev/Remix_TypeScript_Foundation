@@ -20,11 +20,11 @@ export default function ETHBalance(props: ETHBalanceProps): JSX.Element {
         backgroundColor: '$black10',
       }}
     >
-      <Text weight={600} size={1} css={{ color: '$black60' }}>
+      <Text weight="semibold" size={1} css={{ color: '$black60' }}>
         Your Balance
       </Text>
 
-      <Text weight={600} size={2}>
+      <Text weight="semibold" size={2}>
         {formatter(balance)}
       </Text>
     </Flex>

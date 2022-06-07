@@ -3,11 +3,11 @@ import { UseQueryOptions } from 'react-query';
 import {
   ArtworkByContractTokenId,
   useArtworkByContractTokenId as useArtworkByContractTokenIdBaseHook,
-} from 'graphql/hasura/queries/artwork-by-contract-token-id.generated';
+} from '~/graphql/hasura/queries/artwork-by-contract-token-id.generated';
 
 import useTransactionParams from '~/hooks/use-transaction-params';
 
-import { ArtworkFragmentExtended } from 'graphql/hasura/hasura-fragments.generated';
+import { ArtworkFragmentExtended } from '~/graphql/hasura/hasura-fragments.generated';
 
 import { getFirstValue, isAllTrue } from '~/utils/helpers';
 import { isQueryEnabled } from '~/hooks/queries/shared';

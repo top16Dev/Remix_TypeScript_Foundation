@@ -39,7 +39,8 @@ function TransactionLayoutRender(props: TransactionLayoutRenderProps) {
 
   return (
     <Layout backgroundColor={backgroundColor}>
-      <Page title={title} type={pageType}>
+      {/* <Page title={title} type={pageType}> */}
+      <Page title={title} type={PageType.maximal}>
         <Body
           css={{
             display: 'flex',
@@ -57,15 +58,20 @@ function TransactionLayoutRender(props: TransactionLayoutRenderProps) {
 export const TransactionLayoutGrid = styled(Grid, {
   position: 'relative',
   justifyContent: 'center',
-  gridTemplateColumns: '560px 340px',
-  gap: 60,
+  gridGap: '$8',
   paddingTop: '$6',
   paddingBottom: '$4',
+  alignItems: 'flex-start',
+  '@bp2': {
+    gridTemplateColumns: '560px 340px',
+  },
   variants: {
     reversed: {
       true: {
-        gridTemplateColumns: '340px 560px',
-        gap: '$10',
+        '@bp2': {
+          gridTemplateColumns: '340px 560px',
+          gap: '$10',
+        },
       },
     },
   },
@@ -75,4 +81,9 @@ export const TransactionCard = styled(Card, {
   display: 'flex',
   flexDirection: 'column',
   flexGrow: 1,
+  padding: '$5',
+  '@bp2': {
+    paddingX: '$9',
+    paddingY: 60,
+  },
 });

@@ -3,6 +3,7 @@ import { ComponentProps, VariantProps } from '@stitches/react';
 
 import { CSS, styled } from '~/stitches.config';
 import BaseButton from '~/components/base/BaseButton';
+import { ButtonFilterIndicatorRoot } from './ButtonFilterIndicator';
 
 type ButtonV2Props = ComponentProps<typeof ButtonV2>;
 type ButtonV2Variants = VariantProps<typeof ButtonV2>;
@@ -41,7 +42,38 @@ export const primaryButtonVariantCss: CSS = {
   },
 };
 
+
 const ButtonV2 = styled(BaseButton, {
+  paddingY: 0,
+  cursor: 'pointer',
+  appearance: 'none',
+
+  borderRadius: '$round',
+  boxSizing: 'border-box',
+  border: '1px solid transparent',
+  backgroundColor: 'transparent',
+
+  willChange: 'transform',
+  transition:
+    'background-color $1 $ease, border $1 $ease, box-shadow $1 $ease, color $1 $ease, outline $1 $ease, transform $1 $ease',
+
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  fontFamily: '$body',
+  fontWeight: '$semibold',
+  textAlign: 'center',
+  textDecoration: 'none',
+
+  '&:disabled': {
+    cursor: 'not-allowed',
+  },
+
+  svg: {
+    display: 'block',
+  },
+
   variants: {
     size: {
       0: {
@@ -49,6 +81,13 @@ const ButtonV2 = styled(BaseButton, {
         paddingX: '$4',
         fontSize: '$0',
         letterSpacing: '$0',
+
+        [`${ButtonFilterIndicatorRoot}`]: {
+          top: -5,
+          minWidth: '16px',
+          height: '16px',
+          padding: '2px',
+        },
       },
       1: {
         height: '$formElement1',
@@ -68,36 +107,8 @@ const ButtonV2 = styled(BaseButton, {
       standalone: {},
     },
     variant: {
+      base: {},
       primary: primaryButtonVariantCss,
-      secondary: {
-        backgroundColor: '$black0',
-        boxShadow: '$0',
-        color: '$black100',
-
-        '@hover': {
-          '&:hover': {
-            boxShadow: '$1',
-            transform: 'translate3d(0, -1px, 0)',
-          },
-        },
-        '&:active': {
-          boxShadow: '$0',
-          transform: 'translate3d(0, 2px, 0)',
-        },
-        '&:focus-visible': {
-          borderColor: '$black100',
-          outline: '4px solid $blackT30',
-        },
-        '&:disabled': {
-          color: '$black40',
-          transform: 'none',
-          '@hover': {
-            '&:hover': {
-              boxShadow: '$0',
-            },
-          },
-        },
-      },
       outline: {
         backgroundColor: '$black0',
         boxShadow:
@@ -133,6 +144,35 @@ const ButtonV2 = styled(BaseButton, {
           '&:active': {
             backgroundColor: '$black0',
             transform: 'none',
+          },
+        },
+      },
+      raised: {
+        backgroundColor: '$black0',
+        boxShadow: '$0',
+        color: '$black100',
+
+        '@hover': {
+          '&:hover': {
+            boxShadow: '$1',
+            transform: 'translate3d(0, -1px, 0)',
+          },
+        },
+        '&:active': {
+          boxShadow: '$0',
+          transform: 'translate3d(0, 2px, 0)',
+        },
+        '&:focus-visible': {
+          borderColor: '$black100',
+          outline: '4px solid $blackT30',
+        },
+        '&:disabled': {
+          color: '$black40',
+          transform: 'none',
+          '@hover': {
+            '&:hover': {
+              boxShadow: '$0',
+            },
           },
         },
       },
@@ -203,6 +243,7 @@ const ButtonV2 = styled(BaseButton, {
   },
   defaultVariants: {
     size: 1,
+    variant: 'outline',
   },
   compoundVariants: [
     /*

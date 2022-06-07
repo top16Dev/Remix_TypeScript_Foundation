@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
-import { useWeb3React } from '@web3-react/core';
 import { ReactNode } from 'react';
 import { cond, equals } from 'ramda';
+import { useAccount, useNetwork } from 'wagmi';
 
 import FormikSubmitButton, {
   FormikSubmitButtonProps,
@@ -17,47 +17,51 @@ import useModal from '~/hooks/use-modal';
 
 import getChainId from '~/lib/chainId';
 
-type TransactionSubmitButtonProps = FormikSubmitButtonProps;
+type TransactionSubmitButtonProps = FormikSubmitButtonProps & {
+  showErrors?: boolean;
+};
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default function TransactionSubmitButton<T>(
   props: TransactionSubmitButtonProps
 ) {
-  const { label, submittedLabel, submittingLabel } = props;
+  const { label, submittedLabel, submittingLabel, showErrors = true } = props;
 
-  const { errors } = useFormikContext<T>();
+  // const [{ data: network }] = useNetwork();
+  // const [{ data: user }] = useAccount();
 
-  const { chainId, library } = useWeb3React();
+  // const { errors } = useFormikContext<T>();
 
   const { setCurrentModal } = useModal();
 
-  // get the first error message (if it exists)
-  const error = getFormikErrorMessage(errors);
+  // // get the first error message (if it exists)
+  // const error = getFormikErrorMessage(errors);
 
-  const isCorrectNetwork = chainId === getChainId();
+  // const isCorrectNetwork = network?.chain?.id === getChainId();
 
-  if (!library) {
-    return (
-      <ConnectWalletButton
-        handleClick={() => setCurrentModal(ModalKey.AUTH_MAIN)}
-      >
-        Connect wallet to continue
-      </ConnectWalletButton>
-    );
-  }
+  // if (!user) {
+  //   return (
+  //     <ConnectWalletButton
+  //       handleClick={() => setCurrentModal(ModalKey.AUTH_MAIN)}
+  //     >
+  //       Connect wallet to continue
+  //     </ConnectWalletButton>
+  //   );
+  // }
 
-  if (!isCorrectNetwork) {
-    return (
-      <DisabledButton>Connect to {getNetworkName(getChainId())}</DisabledButton>
-    );
-  }
+  // if (!isCorrectNetwork) {
+  //   return (
+  //     <DisabledButton>Connect to {getNetworkName(getChainId())}</DisabledButton>
+  //   );
+  // }
 
-  if (error) {
-    return <DisabledButton>{error}</DisabledButton>;
-  }
+  // if (error && showErrors) {
+  //   return <DisabledButton>{error}</DisabledButton>;
+  // }
 
   return (
     <FormikSubmitButton
+      // disabled={Boolean(error)}
+      disabled={true}
       label={label}
       submittingLabel={submittingLabel}
       submittedLabel={submittedLabel}

@@ -2,12 +2,7 @@ import TextLink from '~/components/base/TextLink';
 
 export default function BidLearnLink(): JSX.Element {
   return (
-    <TextLink
-      href="https://help.foundation.app/en/articles/4742997-a-complete-guide-to-collecting-nfts-and-how-auctions-work"
-      css={{
-        textAlign: 'center',
-      }}
-    >
+    <TextLink href="https://help.foundation.app/hc/en-us/articles/4561241975451">
       Learn how our auctions work.
     </TextLink>
   );

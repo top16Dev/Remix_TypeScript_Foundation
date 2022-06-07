@@ -3,19 +3,18 @@ import { cond, equals } from 'ramda';
 
 import Box from '~/components/base/Box';
 import Flex from '~/components/base/Flex';
-import Paragraph from '~/components/base/Paragraph';
+import Icon from '~/components/Icon';
+import TransitionPane from '~/components/animation/TransitionPane';
+import { TransactionCard } from '~/components/layouts/TransactionLayoutV2';
+import TransactionParagraph from '../TransactionParagraph';
 import Heading from '~/components/base/Heading';
 import SpinnerStroked from '~/components/SpinnerStroked';
 import ConfettiCanvas from '~/components/ConfettiCanvas';
 
-import SuccessIcon from '~/assets/icons/success-icon.svg';
-import ErrorIcon from '~/assets/icons/error-icon.svg';
-import VerifiedBadge from '~/assets/icons/verified-badge.svg';
-import WarningIcon from '~/assets/icons/tx-error.svg';
-
-import Icon from '~/components/Icon';
-import TransitionPane from '~/components/animation/TransitionPane';
-import { TransactionCard } from '~/components/layouts/TransactionLayoutV2';
+import SuccessIcon from '~/assets/icons/success-icon';
+import ErrorIcon from '~/assets/icons/error-icon';
+import VerifiedBadge from '~/assets/icons/verified-badge';
+import WarningIcon from '~/assets/icons/tx-error';
 
 type TransactionType = 'pending' | 'success' | 'error' | 'verify' | 'warning';
 
@@ -27,7 +26,6 @@ interface TransactionProgressPaneProps {
   fireConfetti?: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default function TransactionProgressPane(
   props: TransactionProgressPaneProps
 ) {
@@ -38,24 +36,25 @@ export default function TransactionProgressPane(
       <ConfettiCanvas fireConfetti={fireConfetti} />
       <TransactionCard
         css={{
-          paddingX: 72,
-          paddingTop: 72,
-          paddingBottom: '$9',
           alignItems: 'flex-start',
           flexGrow: 1,
         }}
       >
         <Box css={{ marginBottom: '$6', color: '$black100' }}>
           {/* render different icons based on the transaction status */}
-          {TransactionIcon(status)}
+          {/* {TransactionIcon(status)} */}
+          {"TransactionIcon(status)"}
         </Box>
 
-        <Heading size={4} css={{ marginBottom: '$5' }}>
+        <Heading
+          size={{ '@initial': 2, '@bp2': 4 }}
+          css={{ marginBottom: '$5' }}
+        >
           {title}
         </Heading>
-
-        <Paragraph css={{ marginBottom: '$7' }}>{description}</Paragraph>
-
+        <TransactionParagraph css={{ marginBottom: '$7' }}>
+          {description}
+        </TransactionParagraph>
         <Flex css={{ marginTop: 'auto', width: '100%' }}>{meta}</Flex>
       </TransactionCard>
     </TransitionPane>

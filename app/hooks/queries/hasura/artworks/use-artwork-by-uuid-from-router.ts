@@ -1,13 +1,13 @@
 import { UseQueryOptions } from 'react-query';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 import { getFirstValue, isAllTrue } from '~/utils/helpers';
 import {
   useArtworkByUuid as useArtworkByUuidBaseHook,
   ArtworkByUuid,
-} from 'graphql/hasura/queries/artwork-by-uuid.generated';
+} from '~/graphql/hasura/queries/artwork-by-uuid.generated';
 import { isQueryEnabled } from '~/hooks/queries/shared';
-import { ArtworkFragmentExtended } from 'graphql/hasura/hasura-fragments.generated';
+import { ArtworkFragmentExtended } from '~/graphql/hasura/hasura-fragments.generated';
 
 useArtworkByUuidFromRouter.getKey = useArtworkByUuidBaseHook.getKey;
 
@@ -15,16 +15,17 @@ useArtworkByUuidFromRouter.getKey = useArtworkByUuidBaseHook.getKey;
 export function useArtworkByUuidFromRouter(
   options?: UseQueryOptions<ArtworkByUuid, Error, ArtworkFragmentExtended>
 ) {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const artworkId = getFirstValue(router.query.id);
-
+  // const artworkId = getFirstValue(router.query.id);
+  const artworkId = "artworkId";
   return useArtworkByUuidBaseHook(
     { id: artworkId },
     {
       ...options,
       select: (res) => res.artwork,
-      enabled: isAllTrue([artworkId, isQueryEnabled(options)]),
+      // enabled: isAllTrue([artworkId, isQueryEnabled(options)]),
+      enabled: false,
     }
   );
 }

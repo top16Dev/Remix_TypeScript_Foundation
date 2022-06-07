@@ -5,7 +5,7 @@ import Flex from '~/components/base/Flex';
 import Input from '~/components/base/Input';
 import Text from '~/components/base/Text';
 
-import ETHIcon from '~/assets/icons/eth-input-icon.svg';
+import ETHIcon from '~/assets/icons/eth-input-icon';
 
 interface ETHFieldProps {
   name: string;
@@ -16,7 +16,7 @@ interface ETHFieldProps {
 export default function ETHField(props: ETHFieldProps): JSX.Element {
   const { name, autoFocus } = props;
 
-  const [field] = useField(name);
+  // const [field] = useField(name);
 
   return (
     <Box css={{ position: 'relative', fontSize: 46, minWidth: 0 }}>
@@ -28,7 +28,7 @@ export default function ETHField(props: ETHFieldProps): JSX.Element {
       >
         <Box>
           <Input
-            {...field}
+            // {...field}
             {...props}
             type="number"
             step="any"
@@ -74,7 +74,7 @@ export default function ETHField(props: ETHFieldProps): JSX.Element {
           }}
         >
           <Text
-            weight={600}
+            weight="semibold"
             size={4}
             css={{
               color: '$white100',

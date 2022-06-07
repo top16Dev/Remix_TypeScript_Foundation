@@ -4,19 +4,14 @@ import Paragraph from '~/components/base/Paragraph';
 
 import BidLearnLink from './BidLearnLink';
 
-export default function BidStartNotice(): JSX.Element {
+export default function BidStartNotice() {
   return (
     <Grid css={{ gap: 10 }}>
       <Paragraph>
-        Placing this bid will start a 24 hour auction for the artwork. Once a
-        bid is placed, it cannot be withdrawn.
+        Placing this bid will start a 24 hour auction for the NFT. Once a bid is
+        placed, it cannot be withdrawn.
       </Paragraph>
-      <Flex
-        css={{
-          justifyContent: 'center',
-          '@bp1': { justifyContent: 'flex-start' },
-        }}
-      >
+      <Flex>
         <BidLearnLink />
       </Flex>
     </Grid>

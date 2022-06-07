@@ -1,9 +1,9 @@
-import Text from '~/components/base/Text';
-import Link from '~/components/base/Link';
+import Text from 'components/base/Text';
+import Link from 'components/base/Link';
 
-import ExternalLinkIcon from '~/assets/icons/external-link.svg';
+import ExternalLinkIcon from 'assets/icons/external-link.svg';
 
-import { buildEtherscanLink } from '~/lib/etherscanAddresses';
+import { buildEtherscanLink } from 'lib/etherscanAddresses';
 
 interface TransactionHashLinkProps {
   txHash: string | string[];
@@ -37,9 +37,9 @@ export default function TransactionHashLink(
       target="_blank"
       rel="noreferrer"
     >
-      {/* <ExternalLinkIcon sx={{ display: 'block' }} width={16} height={16} /> */}
+      <ExternalLinkIcon sx={{ display: 'block' }} width={16} height={16} />
       <Text
-        weight={600}
+        weight="semibold"
         css={{ marginLeft: '$4', position: 'relative', top: -1 }}
       >
         View on Etherscan

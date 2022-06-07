@@ -1,6 +1,7 @@
+import { CSS, styled } from '~/stitches.config';
 // import NextLink from 'next/link';
 import { ReactNode } from 'react';
-import { CSS, styled } from '~/stitches.config';
+import { identity } from 'ramda';
 
 import Grid from '~/components/base/Grid';
 import Box from '~/components/base/Box';
@@ -14,10 +15,9 @@ export type ActionButton = ButtonVariants & {
 };
 
 interface TransactionActionButtonsProps {
-  buttons: [ActionButton, ActionButton];
+  buttons: [ActionButton, ActionButton?];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default function TransactionActionButtons(
   props: TransactionActionButtonsProps
 ) {
@@ -32,53 +32,60 @@ export default function TransactionActionButtons(
         variants={primaryButton.variants}
         label={primaryButton.label}
       />
-
-      <TransactionActionButton
-        href={secondaryButton.href}
-        label={secondaryButton.label}
-        variants={{ color: 'white', ...secondaryButton.variants }}
-      />
+      {secondaryButton && (
+        <TransactionActionButton
+          href={secondaryButton.href}
+          label={secondaryButton.label}
+          variants={{ color: 'white', ...secondaryButton.variants }}
+        />
+      )}
     </ButtonGrid>
   );
 }
 
 interface TransactionActionButtonsExternalProps {
   buttons: [ReactNode, ActionButton];
+  isReversed?: boolean;
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export function TransactionActionButtonsExternal(
   props: TransactionActionButtonsExternalProps
 ) {
-  const { buttons } = props;
+  const { buttons, isReversed = false } = props;
 
   const [primaryButton, secondaryButton] = buttons;
 
+  const components = [
+    primaryButton,
+    <TransactionActionButton
+      key="btn"
+      href={secondaryButton.href}
+      label={secondaryButton.label}
+      variants={{ color: 'white', ...secondaryButton.variants }}
+    />,
+  ];
+
   return (
     <ButtonGrid>
-      {primaryButton}
-
-      <TransactionActionButton
-        href={secondaryButton.href}
-        label={secondaryButton.label}
-        variants={{ color: 'white', ...secondaryButton.variants }}
-      />
+      {isReversed
+        ? components.reverse().map(identity)
+        : components.map(identity)}
     </ButtonGrid>
   );
 }
 
 export function TransactionActionButton(props: ActionButton) {
-  const { href, variants, label } = props;
+  const { href, variants, label, css } = props;
   return (
     <Box>
       {/* <NextLink href={href} passHref> */}
         <Button
           as="a"
           hoverable
-          size="large"
+          size="medium"
           shape="regular"
           color="black"
-          css={{ width: '100%' }}
+          css={{ width: '100%', whiteSpace: 'nowrap', ...css }}
           {...variants}
         >
           {label}

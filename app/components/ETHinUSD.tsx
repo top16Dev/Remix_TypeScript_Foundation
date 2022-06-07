@@ -5,7 +5,7 @@ import { isAnyTrue } from '~/utils/helpers';
 
 import Text from '~/components/base/Text';
 
-const getParsedNumber = (number) => {
+const getParsedNumber = (number: string) => {
   return parseFloat(number);
 };
 
@@ -28,7 +28,8 @@ export default function ETHinUSD(props: ETHinUSDProps): JSX.Element {
     );
   }
 
-  const parsedAmount = getParsedNumber(amount);
+  // const parsedAmount = getParsedNumber(amount);
 
-  return <>{formatCurrencyRaw(parsedAmount * priceData)}</>;
+  // return <>{formatCurrencyRaw(parsedAmount * priceData)}</>;
+  return <>{100}</>;
 }

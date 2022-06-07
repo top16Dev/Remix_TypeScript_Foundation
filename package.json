@@ -13,6 +13,7 @@
     "@ethersproject/providers": "^5.6.3",
     "@hapi/iron": "^6.0.0",
     "@mui/material": "^5.6.1",
+    "@radix-ui/react-accordion": "^0.1.6",
     "@radix-ui/react-checkbox": "^0.1.5",
     "@radix-ui/react-dialog": "^0.1.7",
     "@reach/dialog": "^0.17.0",
@@ -30,6 +31,7 @@
     "@wbe/use-is-in-viewport": "^2.3.0",
     "@web3-react/injected-connector": "^6.0.7",
     "axios": "^0.26.1",
+    "canvas-confetti": "^1.5.1",
     "contexts": "^0.0.0",
     "cross-env": "^7.0.3",
     "date-fns": "^2.28.0",
@@ -58,6 +60,7 @@
     "slugify": "^1.6.5",
     "tippy.js": "^6.3.7",
     "use-is-in-viewport": "^1.0.9",
+    "wagmi": "^0.4.9",
     "wrangler": "beta",
     "yup": "^0.32.11",
     "zustand": "^3.7.2"

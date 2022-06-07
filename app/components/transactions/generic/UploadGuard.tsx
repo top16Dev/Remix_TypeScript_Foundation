@@ -1,29 +1,28 @@
 import { ReactNode } from 'react';
+import { useAccount } from 'wagmi';
 
-import useWalletSession from '~/hooks/web3/wallet/use-wallet-session';
-import useUserByPublicKey from '~/hooks/queries/use-user-by-public-key';
-import useUserHasApprovedAction from '~/hooks/queries/hasura/use-user-has-approved-action';
-import useHasSocialVerification from '~/hooks/queries/hasura/use-has-social-verification';
+import useUserByPublicKey from 'hooks/queries/hasura/users/use-user-by-public-key';
+import useUserHasApprovedAction from 'hooks/queries/hasura/markets/use-user-has-approved-action';
+import useHasSocialVerification from 'hooks/queries/hasura/social-verification/use-has-social-verification';
 
-import Flex from '~/components/base/Flex';
-import AgreeToTOSGuard from '~/components/trust-safety/page-guards/AgreeToTOSGuard';
-import SocialVerificationGuard from '~/components/trust-safety/page-guards/SocialVerificationGuard';
-import ApprovedCreatorGuard from '~/components/trust-safety/page-guards/ApprovedCreatorGuard';
-import UserModeratedGuard from '~/components/trust-safety/page-guards/UserModeratedGuard';
+import SpinnerStroked from 'components/SpinnerStroked';
+import Flex from 'components/base/Flex';
+import AgreeToTOSGuard from 'components/trust-safety/page-guards/AgreeToTOSGuard';
+import SocialVerificationGuard from 'components/trust-safety/page-guards/SocialVerificationGuard';
+import ApprovedCreatorGuard from 'components/trust-safety/page-guards/ApprovedCreatorGuard';
+import UserModeratedGuard from 'components/trust-safety/page-guards/UserModeratedGuard';
 
-import { isAllTrue, isAnyTrue } from '~/utils/helpers';
-import { isFlaggedForModeration } from '~/utils/moderation';
-import { PageGuard } from '~/types/Moderation';
-import { ActionType } from '~/types/ActionType';
+import { isAllTrue, isAnyTrue } from 'utils/helpers';
+import { isFlaggedForModeration } from 'utils/moderation';
+import { PageGuard } from 'types/Moderation';
+import { ActionType } from 'types/ActionType';
 
-import { styled } from '~/stitches.config';
-import SpinnerStroked from '~/components/SpinnerStroked';
+import { styled } from 'stitches.config';
 
 interface UploadGuardProps {
   pageGuards: PageGuard[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default function UploadGuard(
   component: ReactNode,
   options: UploadGuardProps
@@ -38,13 +37,12 @@ interface RenderUploadGuardProps extends UploadGuardProps {
 function RenderUploadGuard(props: RenderUploadGuardProps) {
   const { children, pageGuards } = props;
 
-  const { data: user } = useWalletSession();
+  const [{ data: user }] = useAccount();
 
-  const currentUserPublicKey = user?.publicAddress;
-  const token = user?.token;
+  const currentUserPublicKey = user?.address;
 
   const { data: currentUser, isLoading: isUserLoading } = useUserByPublicKey(
-    { publicKey: user?.publicAddress },
+    { publicKey: user?.address },
     {
       enabled: isAnyTrue([
         pageGuards.includes('approved-creator'),
@@ -132,9 +130,7 @@ function RenderUploadGuard(props: RenderUploadGuardProps) {
   ]);
 
   if (hasUserAgreedToTos) {
-    return (
-      <AgreeToTOSGuard publicAddress={currentUserPublicKey} token={token} />
-    );
+    return <AgreeToTOSGuard publicAddress={currentUserPublicKey} />;
   }
 
   return <>{children}</>;

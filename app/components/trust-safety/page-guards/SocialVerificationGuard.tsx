@@ -1,14 +1,14 @@
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 
 import { ButtonGrid } from '~/components/transactions/generic/TransactionActionButtons';
 import TransactionProgressPane from '~/components/transactions/generic/TransactionProgressPane';
 import Button, { ButtonVariants } from '~/components/base/Button';
 import Icon from '~/components/Icon';
 
-import TwitterIcon from '~/assets/icons/twitter-icon.svg';
-import InstagramIcon from '~/assets/icons/instagram-icon.svg';
+import TwitterIcon from '~/assets/icons/twitter-icon';
+import InstagramIcon from '~/assets/icons/instagram-icon';
 
 import { CSS } from '~/stitches.config';
 
@@ -22,7 +22,7 @@ export default function SocialVerificationGuard(
 ) {
   const { redirectPath } = props;
 
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <TransactionProgressPane
@@ -34,12 +34,14 @@ export default function SocialVerificationGuard(
         <ButtonGrid>
           <SocialVerificationLink
             label="Verify Twitter"
-            redirectPath={redirectPath || router.asPath}
+            // redirectPath={redirectPath || router.asPath}
+            redirectPath={redirectPath || ""}
             service="twitter"
           />
           <SocialVerificationLink
             label="Verify Instagram"
-            redirectPath={redirectPath || router.asPath}
+            redirectPath={redirectPath || ""}
+            // redirectPath={redirectPath || router.asPath}
             service="instagram"
           />
         </ButtonGrid>
@@ -58,14 +60,14 @@ function SocialVerificationLink(props: SocialVerificationLinkProps) {
   const { label, service, redirectPath } = props;
 
   return (
-    <NextLink
-      href={{
-        pathname: `/profile/verify/${service}`,
-        query: { 'redirect-path': redirectPath },
-      }}
-      passHref
-      prefetch={false}
-    >
+    // <NextLink
+    //   href={{
+    //     pathname: `/profile/verify/${service}`,
+    //     query: { 'redirect-path': redirectPath },
+    //   }}
+    //   passHref
+    //   prefetch={false}
+    // >
       <a style={{ display: 'block', textDecoration: 'none' }}>
         <IconButton
           css={{ width: '100%' }}
@@ -89,7 +91,7 @@ function SocialVerificationLink(props: SocialVerificationLinkProps) {
           }
         />
       </a>
-    </NextLink>
+    // </NextLink>
   );
 }
 

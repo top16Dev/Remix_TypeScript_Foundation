@@ -12,7 +12,11 @@ export default function TransitionPane(
 
   return (
     <motion.div
-      style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        flexGrow: 1,
+      }}
       initial={{ y: 20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 20, opacity: 0 }}

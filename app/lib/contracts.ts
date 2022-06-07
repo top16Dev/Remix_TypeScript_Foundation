@@ -2,9 +2,12 @@ import {
   getNFTMarketAddress,
   getNFT721Address,
   getSplitAddress,
+  getFETHAddress,
+  getMiddlewareAddress,
 } from '~/lib/addresses';
 import { Signer } from '@ethersproject/abstract-signer';
 import { JsonRpcProvider } from '@ethersproject/providers';
+import { BaseProvider } from '@ethersproject/providers';
 
 import {
   FNDNFT721__factory,
@@ -13,12 +16,19 @@ import {
   FNDNFT721,
   PercentSplitETH,
   PercentSplitETH__factory,
+  FETH,
+  FETH__factory,
+  FNDMiddleware,
+  FNDMiddleware__factory,
 } from '~/types/contracts';
 import { isAllTrue } from '~/utils/helpers';
+import { Contract } from 'ethers';
 
 const nftMarketAddr = getNFTMarketAddress();
 const nft721Addr = getNFT721Address();
 const splitAddr = getSplitAddress();
+const fethAddr = getFETHAddress();
+const middlewareAddr = getMiddlewareAddress();
 
 type ContractMap<T> = Record<string, T>;
 
@@ -28,7 +38,10 @@ const nft721ContractToRead: ContractMap<FNDNFT721> = {};
 // these contracts are 1 of 1
 let nftMarketContract: FNDNFTMarket;
 let nftMarketContractToRead: FNDNFTMarket;
+let middlewareContractToRead: FNDMiddleware;
 let splitContractToRead: PercentSplitETH;
+let fethContract: FETH;
+let fethContractToRead: FETH;
 
 export function getNFTMarketContract(signer: Signer): FNDNFTMarket {
   const canAssignContract = isAllTrue([!nftMarketContract, signer]);
@@ -40,7 +53,7 @@ export function getNFTMarketContract(signer: Signer): FNDNFTMarket {
 }
 
 export function getNFTMarketContractToRead(
-  provider: JsonRpcProvider
+  provider: BaseProvider
 ): FNDNFTMarket {
   const canAssignContract = isAllTrue([!nftMarketContractToRead, provider]);
 
@@ -76,7 +89,7 @@ export function getNFT721Contract({
 }
 
 interface GetNFT721ContractToReadArgs {
-  provider: JsonRpcProvider;
+  provider: BaseProvider;
   contractAddress: string;
 }
 
@@ -98,7 +111,7 @@ export function getNFT721ContractToRead({
 }
 
 export function getSplitContractToRead(
-  provider: JsonRpcProvider
+  provider: BaseProvider
 ): PercentSplitETH {
   const canAssignContract = isAllTrue([!splitContractToRead, provider]);
 
@@ -106,4 +119,49 @@ export function getSplitContractToRead(
     splitContractToRead = PercentSplitETH__factory.connect(splitAddr, provider);
   }
   return splitContractToRead;
+}
+
+export function getFETHContract(signer: Signer): FETH {
+  const canAssignContract = isAllTrue([!fethContract, signer]);
+
+  if (canAssignContract) {
+    fethContract = FETH__factory.connect(fethAddr, signer);
+  }
+  return fethContract;
+}
+
+export function getFETHContractToRead(provider: BaseProvider): FETH {
+  const canAssignContract = isAllTrue([!fethContractToRead, provider]);
+
+  if (canAssignContract) {
+    fethContractToRead = FETH__factory.connect(fethAddr, provider);
+  }
+  return fethContractToRead;
+}
+
+export function getMiddlewareContractToRead(
+  provider: BaseProvider
+): FNDMiddleware {
+  const canAssignContract = isAllTrue([!middlewareContractToRead, provider]);
+
+  if (canAssignContract) {
+    middlewareContractToRead = FNDMiddleware__factory.connect(
+      middlewareAddr,
+      provider
+    );
+  }
+  return middlewareContractToRead;
+}
+
+interface GetOwnerArgs {
+  provider: BaseProvider;
+  contractAddress: string;
+}
+
+export function getContractOwner({ provider, contractAddress }: GetOwnerArgs) {
+  const ownerInterface = [
+    'function owner() public view returns (address ownerAddress)',
+  ];
+  const ownerContract = new Contract(contractAddress, ownerInterface, provider);
+  return ownerContract;
 }

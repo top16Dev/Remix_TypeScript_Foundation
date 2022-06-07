@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-max-depth */
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 
 import Body from '~/components/base/Body';
@@ -53,9 +53,10 @@ interface TransactionLayoutRenderProps
 function TransactionLayoutUuid(props: TransactionLayoutRenderProps) {
   const { children, ...rest } = props;
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const artworkId = getFirstValue(router.query.id);
+  // const artworkId = getFirstValue(router.query.id);
+  const artworkId = "artworkId";
 
   const { data: artworkData } = useArtworkByUuid(
     { id: artworkId },
@@ -122,8 +123,9 @@ function TransactionLayout(props: TransactionLayoutProps) {
                 <ArtworkCard
                   artwork={artwork}
                   creator={artwork?.creator}
-                  currentUser={null}
+                  // currentUser={null}
                   cardType="regular"
+                  currentUserPublicKey={'currentUsePublicKey'}
                 />
               </Box>
             </Grid>

@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
+import { useAccount } from 'wagmi';
 
-import useWalletSession from '~/hooks/web3/wallet/use-wallet-session';
-import useUserByPublicKey from '~/hooks/queries/use-user-by-public-key';
-import useHasSocialVerification from '~/hooks/queries/hasura/use-has-social-verification';
+// import useUserByPublicKey from '~/hooks/queries/hasura/users/use-user-by-public-key';
+// import useHasSocialVerification from '~/hooks/queries/hasura/social-verification/use-has-social-verification';
 import { useArtworkByContractTokenIdFromRouter } from '~/hooks/queries/hasura/artworks/use-artwork-by-contract-token-id';
 import { useArtworkByUuidFromRouter } from '~/hooks/queries/hasura/artworks/use-artwork-by-uuid-from-router';
 
 import Box from '~/components/base/Box';
 import TransactionProgressPane from './TransactionProgressPane';
+import TransactionPaneSkeleton from './TransactionPaneSkeleton';
+import TransactionConnectWallet from './TransactionConnectWallet';
 import SocialVerificationGuard from '~/components/trust-safety/page-guards/SocialVerificationGuard';
 import ApprovedCreatorGuard from '~/components/trust-safety/page-guards/ApprovedCreatorGuard';
 import { PageGuard } from '~/types/Moderation';
@@ -20,14 +22,14 @@ import {
   getArtworkModerationTitle,
   isFlaggedForModeration,
 } from '~/utils/moderation';
-import { ArtworkQueryType } from '~/types/Artwork';
 
-interface TransactionGuardProps {
-  artworkQueryType: ArtworkQueryType;
+// import { TransactionLayoutQueryType } from '~/types/Artwork';
+
+export interface TransactionGuardProps {
+  artworkQueryType: TransactionLayoutQueryType;
   pageGuards: PageGuard[];
 }
 
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export default function TransactionGuard(
   component: ReactNode,
   options: TransactionGuardProps
@@ -41,42 +43,95 @@ interface RenderTransactionGuardProps extends TransactionGuardProps {
   children: ReactNode;
 }
 
+type QueryState = {
+  enabled: boolean;
+};
+
+type QueryStates = {
+  artworkByUuid: QueryState;
+  artworkByContractTokenId: QueryState;
+  currentUser: QueryState;
+  socialVericiation: QueryState;
+};
+
 function RenderTransactionGuard(props: RenderTransactionGuardProps) {
   const { children, pageGuards, artworkQueryType } = props;
 
-  const { data: user } = useWalletSession();
+  // const [{ data: user }] = useAccount();
 
-  const { data: artworkDataUuid } = useArtworkByUuidFromRouter({
-    enabled: isAllTrue([
-      artworkQueryType === 'uuid',
-      pageGuards.includes('artwork-moderated'),
-    ]),
-  });
-
-  const { data: artworkDataTokenId } = useArtworkByContractTokenIdFromRouter({
-    enabled: isAllTrue([
-      artworkQueryType === 'tokenId',
-      pageGuards.includes('artwork-moderated'),
-    ]),
-  });
-
-  const artworkData =
-    artworkQueryType === 'uuid' ? artworkDataUuid : artworkDataTokenId;
-
-  const { data: currentUser } = useUserByPublicKey(
-    { publicKey: user?.publicAddress },
-    {
+  const queryStates: QueryStates = {
+    artworkByUuid: {
+      enabled: isAllTrue([
+        artworkQueryType === 'uuid',
+        pageGuards.includes('artwork-moderated'),
+      ]),
+    },
+    artworkByContractTokenId: {
+      enabled: isAllTrue([
+        artworkQueryType === 'tokenId',
+        pageGuards.includes('artwork-moderated'),
+      ]),
+    },
+    currentUser: {
       enabled: isAnyTrue([
         pageGuards.includes('approved-creator'),
         pageGuards.includes('user-moderated'),
       ]),
-    }
+    },
+    socialVericiation: {
+      enabled: pageGuards.includes('social-verification'),
+    },
+  };
+
+  const { data: artworkDataUuid, isLoading: isArtworkUuidLoading } =
+    useArtworkByUuidFromRouter({
+      enabled: queryStates.artworkByUuid.enabled,
+    });
+
+  const { data: artworkDataTokenId, isLoading: isArtworkTokenIdLoading } =
+    useArtworkByContractTokenIdFromRouter({
+      enabled: queryStates.artworkByContractTokenId.enabled,
+    });
+
+  const artworkData =
+    artworkQueryType === 'uuid' ? artworkDataUuid : artworkDataTokenId;
+
+  const { data: currentUser, isLoading: isCurrentUserLoading } =
+    useUserByPublicKey(
+      { publicKey: user?.address },
+      { enabled: queryStates.currentUser.enabled }
+    );
+
+  const {
+    data: hasSocialVerification,
+    isLoading: isHasSocialVerificationLoading,
+  } = useHasSocialVerification(
+    { publicKey: user?.address },
+    { enabled: queryStates.socialVericiation.enabled }
   );
 
-  const { data: hasSocialVerification } = useHasSocialVerification(
-    { publicKey: user?.publicAddress },
-    { enabled: pageGuards.includes('social-verification') }
-  );
+  const isLoading = isAnyTrue([
+    isAllTrue([isArtworkUuidLoading, queryStates.artworkByUuid.enabled]),
+    isAllTrue([
+      isArtworkTokenIdLoading,
+      queryStates.artworkByContractTokenId.enabled,
+    ]),
+    isAllTrue([isCurrentUserLoading, queryStates.currentUser.enabled]),
+    isAllTrue([
+      isHasSocialVerificationLoading,
+      queryStates.socialVericiation.enabled,
+    ]),
+  ]);
+
+  const enabled = false;
+
+  if (isLoading || enabled) {
+    return <TransactionPaneSkeleton />;
+  }
+
+  if (!user) {
+    return <TransactionConnectWallet />;
+  }
 
   const hasApprovedCreatorGuard = isAllTrue([
     !currentUser?.user?.isApprovedCreator,
