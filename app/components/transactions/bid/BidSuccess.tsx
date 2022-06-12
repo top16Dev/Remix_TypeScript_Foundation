@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import TransactionProgressPane from '~/components/transactions/generic/TransactionProgressPane';
 import TransactionActionButtons from '../generic/TransactionActionButtons';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 

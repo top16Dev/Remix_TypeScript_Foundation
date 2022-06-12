@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Formik, Form, FormikConfig, FormikProps } from 'formik';
 import { AnimatePresence } from 'framer-motion';
 import { cond } from 'ramda';
@@ -33,7 +35,7 @@ type TransactionAwaiting<T> = {
 
 interface TransactionFlowProps<T> {
   txHash: string;
-  // formProps: FormikConfig<T>;
+  formProps: FormikConfig<T>;
   steps: CondFn<T>[];
   transactionState: {
     awaiting?: TransactionAwaiting<T>;
@@ -59,19 +61,23 @@ type CondFn<T> = [
 export default function TransactionFlow<T>(props: TransactionFlowProps<T>) {
   const { transactionState, 
     steps, 
-    // formProps, 
+    formProps, 
     txHash } = props;
 
   return (
-    // <Formik<T>
-    //   enableReinitialize
-    //   initialValues={formProps.initialValues}
-    //   validationSchema={formProps.validationSchema}
-    //   onSubmit={formProps.onSubmit}
-    // >
-    //   {(formikState) => (
+    <Formik<T>
+      enableReinitialize
+      initialValues={formProps.initialValues}
+      // validationSchema={formProps.validationSchema}
+      // onSubmit={formProps.onSubmit}
+      onSubmit={async (values) => {
+        await new Promise((r) => setTimeout(r, 500));
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
+       {(formikState) => (
         <Form style={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-          <AnimatePresence exitBeforeEnter>asdf
+          {/* <AnimatePresence exitBeforeEnter>  */}
             {/* {cond<FormikProps<T>, JSX.Element>([
               [
                 () => transactionState.loading.isLoading,
@@ -116,9 +122,9 @@ export default function TransactionFlow<T>(props: TransactionFlowProps<T>) {
               ],
               ...steps,
             ])(formikState)} */}
-          </AnimatePresence>
+          {/* </AnimatePresence> */}
         </Form>
-    //   )}
-    // </Formik>
+       )}
+    </Formik>
   );
 }

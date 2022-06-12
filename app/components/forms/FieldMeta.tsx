@@ -4,8 +4,8 @@ import { ReactNode } from 'react';
 import Box from '~/components/base/Box';
 import Icon from '~/components/Icon';
 
-import ValidIcon from '~/assets/icons/input-check-icon.svg';
-import ErrorIcon from '~/assets/icons/error-icon.svg';
+import ValidIcon from '~/assets/icons/input-check-icon';
+import ErrorIcon from '~/assets/icons/error-icon';
 
 interface PopUpProps {
   children: ReactNode;

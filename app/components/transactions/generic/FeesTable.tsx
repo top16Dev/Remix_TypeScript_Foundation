@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Box from '~/components/base/Box';
 import Grid from '~/components/base/Grid';
 import Flex from '~/components/base/Flex';
@@ -6,8 +8,11 @@ import Heading from '~/components/base/Heading';
 import GraySquare from '~/components/base/GraySquare';
 import CircleAvatar from '~/components/avatars/CircleAvatar';
 import FollowPopover from '~/components/follows/FollowPopover';
+import IconV2 from '~/components/base/IconV2';
+import ChevronIcon from '~/assets/icons/chevron-icon';
 
 import { VariantProps } from '@stitches/react';
+import {styled} from '~/stitches.config';
 
 import { buildAvatarUrl } from '~/utils/assets';
 import { formatETHWithSuffix } from '~/utils/formatters';
@@ -102,19 +107,42 @@ interface LineItemProps {
   label: string;
   value: string;
   size?: VariantProps<typeof Text>['size'];
+  collapsible?: boolean;
 }
 
+const AccordionChevron = styled(ChevronIcon, {
+  '[data-state=open] &': { transform: 'rotate(180deg)' },
+});
+
 function LineItem(props: LineItemProps) {
-  const { label, value, size = 2 } = props;
+  const { label, value, size = 2, collapsible } = props;
+
+  const useSmallTextSize = size === 0;
 
   return (
-    <Flex css={{ alignItems: 'flex-start', justifyContent: 'space-between' }}>
-      <Heading size={1} css={{ color: '$black60' }}>
+    <Flex
+      css={{
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        width: '100%',
+      }}
+    >
+      <Heading size={useSmallTextSize ? 0 : 1} css={{ color: '$black60' }}>
         {label}
       </Heading>
-      <Text size={size} weight="semibold">
-        {value}
-      </Text>
+      <Flex css={{ alignItems: 'flex-start', justifyContent: 'space-between' }}>
+        <Text size={size} weight="semibold">
+          {value}
+        </Text>
+        {/* {collapsible && (
+          <IconV2
+            css={{ color: '$black20', marginLeft: '$2' }}
+            size={3}
+            aria-hidden
+            icon={AccordionChevron}
+          />
+        )} */}
+      </Flex>
     </Flex>
   );
 }

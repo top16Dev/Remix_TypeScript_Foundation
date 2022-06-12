@@ -39,7 +39,7 @@ export default function Tabs<T extends string | number>(
 
 interface TabsWithLabelsProps<T, U> {
   currentView: U;
-  setCurrentView: (arg1: string) => void;
+  // setCurrentView: (arg1: string) => void;
   tabs: T[];
   isScrollable?: boolean;
 }
@@ -53,7 +53,9 @@ export interface Tab {
 export function TabsWithLabels<T extends Tab, U extends string>(
   props: TabsWithLabelsProps<T, U>
 ): JSX.Element {
-  const { setCurrentView, currentView, tabs, isScrollable = false } = props;
+  const { 
+    // setCurrentView, 
+    currentView, tabs, isScrollable = false } = props;
 
   return (
     <TabBar isScrollable={isScrollable}>
@@ -68,7 +70,7 @@ export function TabsWithLabels<T extends Tab, U extends string>(
             className={tab.className}
             key={tab.value}
             isActive={currentView === tab.value}
-            onClick={() => setCurrentView(tab.value)}
+            // onClick={() => setCurrentView(tab.value)}
           >
             {tab.label}
           </TabHeading>

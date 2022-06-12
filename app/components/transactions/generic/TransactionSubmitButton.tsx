@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { useFormikContext } from 'formik';
 import { ReactNode } from 'react';
 import { cond, equals } from 'ramda';
@@ -61,7 +63,7 @@ export default function TransactionSubmitButton<T>(
   return (
     <FormikSubmitButton
       // disabled={Boolean(error)}
-      disabled={true}
+      disabled={false}
       label={label}
       submittingLabel={submittingLabel}
       submittedLabel={submittedLabel}
@@ -90,9 +92,9 @@ function ConnectWalletButton(props: ConnectWalletButtonProps) {
   );
 }
 
-const getNetworkName = cond<number, string>([
-  [equals(1), () => 'Ethereum mainnet'],
-  [equals(3), () => 'Ropsten testnet'],
-  [equals(4), () => 'Rinkeby testnet'],
-  [equals(5), () => 'Goerli testnet'],
-]);
+// const getNetworkName = cond<number, string>([
+//   [equals(1), () => 'Ethereum mainnet'],
+//   [equals(3), () => 'Ropsten testnet'],
+//   [equals(4), () => 'Rinkeby testnet'],
+//   [equals(5), () => 'Goerli testnet'],
+// ]);

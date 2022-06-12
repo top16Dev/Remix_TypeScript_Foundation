@@ -33,6 +33,8 @@ type BuyNowEvent =
 type OfferEvent = 'offer_viewed' | 'offer_made' | 'offer_accepted';
 // Homepage events
 type HomepageEvent =
+  | 'fndos_banner_clicked'
+  | 'fndos_banner_dismissed'
   | 'homepage_primary_cta_clicked'
   | 'featured_profile_clicked'
   | 'featured_profile_in_collection_clicked';
@@ -40,6 +42,16 @@ type MarketingEvent =
   | 'marketing_top_cta_clicked'
   | 'marketing_bottom_cta_clicked'
   | 'marketing_sticky_header_cta_clicked';
+
+type Web3ActionEvent =
+  | 'web3_action_viewed'
+  | 'web3_action_accepted'
+  | 'web3_action_rejected';
+
+type ShareEvent =
+  | 'share_button_clicked'
+  | 'share_url_clicked'
+  | 'share_twitter_clicked';
 
 export type EventName =
   | BidEvent
@@ -53,20 +65,26 @@ export type EventName =
   | BuyNowEvent
   | OfferEvent
   | HomepageEvent
-  | MarketingEvent;
+  | MarketingEvent
+  | Web3ActionEvent
+  | ShareEvent;
 
-export type SegmentEvent<T> = {
+export type SegmentEvent<Payload extends Record<string, unknown>> = {
   eventName: EventName;
-  payload: T;
+  payload: Payload;
 };
 
-export type SegmentAuctionEvent = {
+export type SegmentAuctionPayload = {
   contractAddress: string;
   auctionId: number;
   tokenId: number;
 };
 
-export type SegmentMarketEvent = {
+export type SegmentAuctionBidPayload = SegmentAuctionPayload & {
+  ethAmount: number;
+};
+
+export type SegmentMarketPayload = {
   contractAddress: string;
   tokenId: number;
   ethAmount: number;
@@ -74,6 +92,26 @@ export type SegmentMarketEvent = {
   buyerAddress: string;
   creatorAddress: string;
 };
+
+export type SegmentWeb3Payload = {
+  /**
+   * seller = creator/minter of an NFT
+   * buyer = buyer of an NFT
+   */
+  userType: 'buyer' | 'seller';
+} & (
+  | {
+      /** web3 marketplace activity */
+      type: 'market';
+      marketType: 'auction' | 'buy_now' | 'offer';
+    }
+  | {
+      /** web3 creation flows */
+      type: 'supply';
+      userType: 'seller';
+      actionType: 'mint';
+    }
+);
 
 export default function useSegmentEvent() {
   const analytics = useSegment();

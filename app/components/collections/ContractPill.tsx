@@ -6,18 +6,22 @@ import Box from '~/components/base/Box';
 import ExternalLinkIcon from '~/assets/icons/external-link';
 
 const Wrapper = styled(Box, {
-  paddingY: '$2',
-  paddingX: '$5',
   display: 'inline-block',
   background: '$white100',
   color: '$black100',
   boxShadow: '$0',
   borderRadius: '$round',
+  paddingY: '$1',
+  paddingX: '$3',
+  '@bp5': {
+    paddingY: '$2',
+    paddingX: '$5',
+  },
   variants: {
     frosted: {
       true: {
         color: '$white100',
-        background: 'rgba(255, 255, 255, 0.2)',
+        background: '$whiteT20',
         backdropFilter: 'blur(10px)',
         boxShadow: 'none',
       },
@@ -26,8 +30,6 @@ const Wrapper = styled(Box, {
 });
 
 const WrapperLink = styled(Link, {
-  paddingY: '$2',
-  paddingX: '$5',
   display: 'inline-block',
   background: '$white100',
   color: '$black100',
@@ -38,6 +40,12 @@ const WrapperLink = styled(Link, {
   textDecoration: 'none',
   svg: {
     transition: 'color $1 $ease',
+  },
+  paddingY: '$1',
+  paddingX: '$3',
+  '@bp4': {
+    paddingY: '$2',
+    paddingX: '$5',
   },
   '@hover': {
     '&:hover': {
@@ -53,7 +61,7 @@ const WrapperLink = styled(Link, {
     frosted: {
       true: {
         color: '$white100',
-        background: 'rgba(255, 255, 255, 0.2)',
+        background: '$whiteT20',
         backdropFilter: 'blur(10px)',
         boxShadow: 'none',
       },
@@ -61,35 +69,33 @@ const WrapperLink = styled(Link, {
   },
 });
 
-const ContractText = styled('span', {
+export const CollectionContractText = styled('span', {
   fontFamily: '$mono',
   fontSize: '$0',
   letterSpacing: 1,
   textTransform: 'uppercase',
-  '@bp2': {
-    fontSize: '$2',
-  },
 });
 
 interface ContractPillProps {
   frosted?: boolean;
   href?: string;
   contract: string;
-  hasIcon: boolean;
 }
 
-const externalLinkStyles = css({
+const externalLinkIconStyles = css({
   width: 10,
   height: 10,
-  '@bp2': {
+  '@bp4': {
     width: 14,
     height: 14,
   },
 });
 
 export default function ContractPill(props: ContractPillProps): JSX.Element {
-  const { frosted = false, href, contract, hasIcon } = props;
+  const { frosted = false, href, contract } = props;
 
+  // TODO: split this into two components.
+  // Styling has now diverged between the use cases of this component.
   if (href) {
     return (
       <WrapperLink
@@ -98,25 +104,39 @@ export default function ContractPill(props: ContractPillProps): JSX.Element {
         target="_blank"
         rel="noreferrer"
       >
-        <ContractText>{contract}</ContractText>
-        {hasIcon && (
-          <Box
-            css={{
-              color: frosted ? '$white40' : '$black20',
-              display: 'inline-block',
-              marginLeft: '$2',
-              '@hover': { '&:hover': { color: '$black100' } },
-            }}
-          >
-            <ExternalLinkIcon className={externalLinkStyles()} />
-          </Box>
-        )}
+        <CollectionContractText
+          css={{
+            '@bp4': {
+              fontSize: '$2',
+            },
+          }}
+        >
+          {contract}
+        </CollectionContractText>
+        <Box
+          css={{
+            color: frosted ? '$whiteT40' : '$black20',
+            display: 'inline-block',
+            marginLeft: '$2',
+            '@hover': { '&:hover': { color: '$black100' } },
+          }}
+        >
+          <ExternalLinkIcon className={externalLinkIconStyles()} />
+        </Box>
       </WrapperLink>
     );
   }
   return (
     <Wrapper frosted={frosted}>
-      <ContractText>{contract}</ContractText>
+      <CollectionContractText
+        css={{
+          '@bp5': {
+            fontSize: '$2',
+          },
+        }}
+      >
+        {contract}
+      </CollectionContractText>
     </Wrapper>
   );
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Paragraph from '~/components/base/Paragraph';
 import Box from '~/components/base/Box';
 import TransactionSubmitButton from './TransactionSubmitButton';
@@ -35,13 +37,21 @@ export default function TransactionFields(props: TransactionFieldsProps) {
   // const buyNowPrice = field.value;
   const buyNowPrice = 0.23;
 
-//   const { title, description, button, learnMoreLink } =
-//     transactionCopy[transactionType].initial;
-    const title = "Place a bid";
-    const description = "Once your bid is placed, you will be the highest bidder in the auction";
-    const learnMoreLink = "/";
-//   const isBuyNowAccept = transactionType === 'buy-now-accept';
-  const isBuyNowAccept = false;
+  // const { title, description, button, learnMoreLink } = transactionCopy[transactionType].initial;
+  const title = transactionCopy[transactionType].initial?.title;
+  const description = transactionCopy[transactionType].initial?.description;
+  const learnMoreLink = transactionCopy[transactionType].initial?.learnMoreLink;
+  const button = transactionCopy[transactionType].initial?.button;
+    // const title = "Place a bid";
+    // const description = "Once your bid is placed, you will be the highest bidder in the auction";
+    // const learnMoreLink = "/";
+    // const button = {
+    //     label: 'Place bid',
+    //     submittingLabel: 'Placing bid…',
+    //     submittedLabel: 'Bid placed',
+    // };
+  const isBuyNowAccept = transactionType === 'buy-now-accept';
+  // const isBuyNowAccept = true;
 
   return (
     <TransitionPane>
@@ -50,8 +60,13 @@ export default function TransactionFields(props: TransactionFieldsProps) {
           {title}
         </TransactionHeading>
         <Box css={{ marginBottom: '$8' }}>
-          <Paragraph css={{ marginBottom: '$5' }}>
-            <Flex>
+          <Paragraph css={{ marginBottom: '$5'}}>
+            <Flex 
+            // css={{
+            //   backgroundColor: '$black100',
+            //   borderRadius: '$3',
+            // }}
+            >
               <Text>
                 {description}{' '}
                 {learnMoreLink && (
@@ -71,6 +86,7 @@ export default function TransactionFields(props: TransactionFieldsProps) {
           </Paragraph>
           <ETHField
             // frozenValue={isBuyNowAccept && formatETH(buyNowPrice)}
+            frozenValue=""
             placeholder="0.00"
             name={isBuyNowAccept ? 'buyNowPrice' : 'amount'}
           />
@@ -79,18 +95,18 @@ export default function TransactionFields(props: TransactionFieldsProps) {
               <Fees.LineItem
                 label="Balance"
                 // value={formatETHWithSuffix(amount.value)}
-                value="value"
+                value="0 ETH"
               />
             ) : (
               <AmountBreakdown lineItems={lineItems} totalAmount={amount} />
             )}
           </Grid>
         </Box>
-        {/* <TransactionSubmitButton
-          label={button.label}
-          submittingLabel={button.submittingLabel}
-          submittedLabel={button.submittedLabel}
-        /> */}
+        <TransactionSubmitButton
+          label={button?.label}
+          submittingLabel={button?.submittingLabel}
+          submittedLabel={button?.submittedLabel}
+        />
       </TransactionCard>
     </TransitionPane>
   );

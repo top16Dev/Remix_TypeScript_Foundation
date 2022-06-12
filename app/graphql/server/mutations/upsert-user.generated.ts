@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import * as Types from '../types-server.generated';
 
 import { UserFragment } from '../server-fragments.generated';

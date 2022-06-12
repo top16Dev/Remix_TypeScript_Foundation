@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { CSS } from '~/stitches.config';
 import { ReactNode } from 'react';
 import { useFormikContext } from 'formik';
@@ -21,23 +22,23 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
     isLoading = false,
   } = props;
 
-  const { isSubmitting, isValid, isInitialValid } = useFormikContext();
+  // const { isSubmitting, isValid, isInitialValid } = useFormikContext();
 
-  const disabled =
-    isLoading ||
-    isSubmitting ||
-    (disableIfInvalid && !isValid && !isInitialValid);
+  // const disabled =
+  //   isLoading ||
+  //   isSubmitting ||
+  //   (disableIfInvalid && !isValid && !isInitialValid);
 
-  const loading = isLoading || isSubmitting;
+  // const loading = isLoading || isSubmitting;
 
-  if (loading) {
-    return (
-      <LoadingButton css={{ width: '100%' }}>
-        {submittingText ? submittingText : children ?? 'Submit'}
-      </LoadingButton>
-    );
-  }
-
+  // if (loading) {
+  //   return (
+  //     <LoadingButton css={{ width: '100%' }}>
+  //       {submittingText ? submittingText : children ?? 'Submit'}
+  //     </LoadingButton>
+  //   );
+  // }
+  const disabled = false;
   return (
     <Button
       color="black"

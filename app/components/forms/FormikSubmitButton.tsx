@@ -8,9 +8,9 @@ import Box from '~/components/base/Box';
 import ComponentTransition from '~/components/ComponentTransition';
 
 export interface FormikSubmitButtonProps {
-  label: string;
-  submittingLabel: string;
-  submittedLabel: string;
+  label?: string;
+  submittingLabel?: string;
+  submittedLabel?: string;
   disabled?: boolean;
 }
 
@@ -19,27 +19,29 @@ export default function FormikSubmitButton(
 ): JSX.Element {
   const { label, submittingLabel, submittedLabel, disabled } = props;
 
-  const { isSubmitting, isValid, status } = useFormikContext();
+  // const { isSubmitting, isValid, status } = useFormikContext();
 
-  const [isSubmitted, setSubmitted] = useState(false);
+  // const [isSubmitted, setSubmitted] = useState(false);
 
-  useEffect(() => {
-    if (status?.formSubmitted && isValid) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-      }, 10000);
-    }
-  }, [isValid, status]);
+  // useEffect(() => {
+  //   if (status?.formSubmitted && isValid) {
+  //     setSubmitted(true);
+  //     setTimeout(() => {
+  //       setSubmitted(false);
+  //     }, 10000);
+  //   }
+  // }, [isValid, status]);
 
-  const isDisabled = isSubmitting || isSubmitted || !isValid || disabled;
+  // const isDisabled = isSubmitting || isSubmitted || !isValid || disabled;
 
-  const displayLabel = isSubmitting
-    ? submittingLabel
-    : isSubmitted
-    ? submittedLabel
-    : label;
-
+  // const displayLabel = isSubmitting
+  //   ? submittingLabel
+  //   : isSubmitted
+  //   ? submittedLabel
+  //   : label;
+  const displayLabel = label;
+  const isDisabled = false;
+  const isSubmitting = false;
   return (
     <Button
       type="submit"

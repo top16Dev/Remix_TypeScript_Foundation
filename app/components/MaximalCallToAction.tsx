@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+// import NextLink from 'next/link';
 
 import { H1Heading } from '~/components/base/Heading';
 import ButtonV2 from '~/components/base/ButtonV2';
@@ -29,7 +29,7 @@ export default function MaximalCallToAction(props: MaximalCallToActionProps) {
           {action === 'CONNECT' ? (
             <ConnectWalletButton />
           ) : (
-            <NextLink href={action.href} passHref>
+            // <NextLink href={action.href} passHref>
               <ButtonV2
                 as="a"
                 variant="primary"
@@ -37,7 +37,7 @@ export default function MaximalCallToAction(props: MaximalCallToActionProps) {
               >
                 {action.content}
               </ButtonV2>
-            </NextLink>
+            // </NextLink>
           )}
         </ActionWrapper>
       </Box>

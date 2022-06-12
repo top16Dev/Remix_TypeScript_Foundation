@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import {
   UserFragment,
   ArtworkFragment,
   ArtworkFragmentExtended,
   ArtworkEventFragment,
 } from '~/graphql/hasura/hasura-fragments.generated';
-import {
-  Artwork,
-  Artwork_User_Visibility,
-  Maybe,
-} from '~/graphql/hasura/types-hasura.generated';
+// import {
+//   Artwork,
+//   Artwork_User_Visibility,
+//   Maybe,
+// } from '~/graphql/hasura/types-hasura.generated';
 import Account from './Account';
 import { AlgoliaArtwork } from './Algolia';
 import { ArtworkEvent, LatestArtworkEvent } from './Event';
@@ -54,42 +56,42 @@ type LatestArtworkEvents = {
   latestEvents: LatestArtworkEvent[];
 };
 
-export type ArtworkV2 = ArtworkFragmentExtended &
-  LatestArtworkEvents & {
-    artworkUserVisibilities?: Array<Pick<Artwork_User_Visibility, 'hiddenAt'>>;
-  };
+// export type ArtworkV2 = ArtworkFragmentExtended &
+//   LatestArtworkEvents & {
+//     artworkUserVisibilities?: Array<Pick<Artwork_User_Visibility, 'hiddenAt'>>;
+//   };
 
-export type BasicArtwork = Maybe<
-  { creator?: Maybe<UserFragment> } & ArtworkFragment
->;
+// export type BasicArtwork = Maybe<
+//   { creator?: Maybe<UserFragment> } & ArtworkFragment
+// >;
 
-export type CollectionArtwork = Maybe<
-  { creator?: Maybe<UserFragment> } & ArtworkFragmentExtended
->;
+// export type CollectionArtwork = Maybe<
+//   { creator?: Maybe<UserFragment> } & ArtworkFragmentExtended
+// >;
 
-export interface ArtworkWithEvent extends ArtworkFragmentExtended {
-  event: ArtworkEventFragment;
-}
+// export interface ArtworkWithEvent extends ArtworkFragmentExtended {
+//   event: ArtworkEventFragment;
+// }
 
-export type ArtworkAssetFields = Pick<
-  Artwork,
-  | 'assetIPFSPath'
-  | '~/assetscheme'
-  | 'assetHost'
-  | 'assetPath'
-  | 'assetId'
-  | '~/assetstatus'
-  | 'mimeType'
-  | 'name'
-  | 'tokenId'
-  | 'id'
->;
+// export type ArtworkAssetFields = Pick<
+//   Artwork,
+//   | 'assetIPFSPath'
+//   | '~/assetscheme'
+//   | 'assetHost'
+//   | 'assetPath'
+//   | 'assetId'
+//   | '~/assetstatus'
+//   | 'mimeType'
+//   | 'name'
+//   | 'tokenId'
+//   | 'id'
+// >;
 
-export type MergedArtwork = ArtworkV2;
+// export type MergedArtwork = ArtworkV2;
 
-export type PolymorphicArtwork = MergedArtwork | AlgoliaArtwork | ArtworkV2;
+// export type PolymorphicArtwork = MergedArtwork | AlgoliaArtwork | ArtworkV2;
 
-export default MergedArtwork;
+// export default MergedArtwork;
 
 export enum ArtworkStatus {
   DRAFT = 'DRAFT',
@@ -110,3 +112,9 @@ export enum AssetStatus {
 }
 
 export type ArtworkQueryType = 'uuid' | 'tokenId';
+
+export type TransactionLayoutQueryType =
+  | 'uuid'
+  | 'tokenId'
+  | 'create-collection'
+  | 'collection-slug';

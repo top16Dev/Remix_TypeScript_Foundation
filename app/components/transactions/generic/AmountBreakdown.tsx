@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import {
 Accordion,
 AccordionItem,
@@ -10,6 +11,7 @@ import Box from '~/components/base/Box';
 import Divider from '~/components/base/Divider';
 import { formatETHWithSuffix } from '~/utils/formatters';
 import { LineItem } from '~/utils/transactions';
+import Fees from './FeesTable';
 // import Fees from './FeesTable';
 
 interface AmountBreakdownProps {
@@ -47,12 +49,12 @@ return (
                 },
             }}
             >
-            {/* <Fees.LineItem
+            <Fees.LineItem
                 label={totalAmount.label}
                 // value={formatETHWithSuffix(totalAmount.value)}
-                value="totalAmount.value"
+                value="0"
                 // collapsible
-            /> */}
+            />
             </ButtonV2>
         </AccordionTrigger>
         </AccordionHeader>
@@ -69,12 +71,12 @@ return (
             const isLastItem = index === lineItems.length - 1;
             return (
                 <AccordionItem key={index} value={lineItem.value.toString()}>
-                {/* <Fees.LineItem
+                <Fees.LineItem
                     size={0}
                     label={lineItem.label}
                     // value={formatETHWithSuffix(lineItem.value)}
-                    value="value"
-                /> */}
+                    value="0"
+                />
                 {!isLastItem && (
                     <Divider
                     css={{

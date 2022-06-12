@@ -21,7 +21,17 @@ type TransactionCopy = {
   title: string;
 };
 
+interface TransactionCopyInitial extends TransactionCopy {
+  button: {
+    label: string;
+    submittingLabel: string;
+    submittedLabel: string;
+  };
+  learnMoreLink?: string;
+}
+
 export type TransactionStateCopy = {
+  initial?: TransactionCopyInitial;
   error: Pick<TransactionCopy, 'description'>;
   pending: TransactionCopy;
 };
@@ -47,6 +57,18 @@ export const transactionCopy: Record<TransactionType, TransactionStateCopy> = {
       title: 'Making the Offer…',
       description:
         "Your Offer is being confirmed on the Ethereum blockchain. You can leave this page if you'd like.",
+    },
+    initial: {
+      title: 'Make an Offer',
+      description:
+        'Once an Offer is sent, the owner will have 24 hours to accept. If the Offer expires, the funds will be available in your Offer Balance.',
+      button: {
+        label: 'Make offer',
+        submittingLabel: 'Making offer…',
+        submittedLabel: 'Offer made',
+      },
+      learnMoreLink:
+        'https://help.foundation.app/hc/en-us/articles/4562020256667',
     },
   },
   'auction-change-reserve': {
@@ -130,6 +152,16 @@ export const transactionCopy: Record<TransactionType, TransactionStateCopy> = {
       description:
         "The sale is being confirmed on the Ethereum blockchain. You can leave this page if you'd like.",
     },
+    initial: {
+      title: 'Buy Now',
+      description:
+        'Once the transaction is confirmed, the NFT will be sent to your wallet instantly. ',
+      button: {
+        label: 'Confirm',
+        submittingLabel: 'Confirming…',
+        submittedLabel: 'Confirmed',
+      },
+    },
   },
   'list-auction': {
     error: {
@@ -171,6 +203,18 @@ export const transactionCopy: Record<TransactionType, TransactionStateCopy> = {
       title: 'Your bid has been submitted…',
       description:
         'Your bid is being confirmed on the Ethereum blockchain. You’re free to leave this page if you like.',
+    },
+    initial: {
+      title: 'Place a bid',
+      description:
+        'Once your bid is placed, you will be the highest bidder in the auction.',
+      button: {
+        label: 'Place bid',
+        submittingLabel: 'Placing bid…',
+        submittedLabel: 'Bid placed',
+      },
+      learnMoreLink:
+        'https://help.foundation.app/hc/en-us/articles/4561241975451#Reserve-Auctions2',
     },
   },
   mint: {

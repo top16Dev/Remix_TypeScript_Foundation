@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useField } from 'formik';
 import { useMeasure } from 'react-use';
@@ -18,43 +19,43 @@ interface WalletAddressFieldProps {
 export default function WalletAddressField(
   props: WalletAddressFieldProps
 ): JSX.Element {
-  const [field, meta, helpers] = useField(props);
+  // const [field, meta, helpers] = useField(props);
 
-  const { value } = field;
-  const { error } = meta;
+  // const { value } = field;
+  // const { error } = meta;
 
-  const isValid = !!(value.length === 42 && !meta.error);
-  const hasError = !!(notEmpty(value) && error);
+  // const isValid = !!(value.length === 42 && !meta.error);
+  // const hasError = !!(notEmpty(value) && error);
 
   const [charRef, { width: charWidth }] = useMeasure();
   const [boxRef, { width: fieldWidth }] = useMeasure();
 
-  const [displayValue, setDisplayValue] = useState(value);
+  // const [displayValue, setDisplayValue] = useState(value);
 
-  const onBlur = () => helpers.setTouched(true);
+  // const onBlur = () => helpers.setTouched(true);
 
-  function handleKeyPress(e) {
-    if (e.key === 'Delete' || e.key === 'Backspace') {
-      helpers.setValue('');
-    }
-  }
+  // function handleKeyPress(e) {
+  //   if (e.key === 'Delete' || e.key === 'Backspace') {
+  //     helpers.setValue('');
+  //   }
+  // }
 
-  useEffect(() => {
-    // this is ported over from the existing app
-    // TODO: add comments regarding the logic
-    const strLength = value?.length ?? 0;
-    const maxChars = fieldWidth / charWidth;
+  // useEffect(() => {
+  //   // this is ported over from the existing app
+  //   // TODO: add comments regarding the logic
+  //   const strLength = value?.length ?? 0;
+  //   const maxChars = fieldWidth / charWidth;
 
-    if (strLength >= maxChars) {
-      const numberOfChars = Math.round((fieldWidth / charWidth - 5) / 2);
+  //   if (strLength >= maxChars) {
+  //     const numberOfChars = Math.round((fieldWidth / charWidth - 5) / 2);
 
-      const truncatedStr = truncateAddress({ address: value, numberOfChars });
+  //     const truncatedStr = truncateAddress({ address: value, numberOfChars });
 
-      setDisplayValue(truncatedStr);
-    } else {
-      setDisplayValue(value);
-    }
-  }, [value, fieldWidth, charWidth]);
+  //     setDisplayValue(truncatedStr);
+  //   } else {
+  //     setDisplayValue(value);
+  //   }
+  // }, [value, fieldWidth, charWidth]);
 
   return (
     <Box>
@@ -78,14 +79,16 @@ export default function WalletAddressField(
       <Box css={{ position: 'relative' }}>
         <Input
           {...props}
-          {...field}
-          onKeyDown={handleKeyPress}
-          onBlur={onBlur}
-          value={displayValue}
+          // {...field}
+          // onKeyDown={handleKeyPress}
+          // onBlur={onBlur}
+          // value={displayValue}
+          value={""}
           css={{ fontFamily: '$mono', fontSize: '$0' }}
         />
 
-        <ValidationStates hasError={hasError} isValid={isValid} />
+        {/* <ValidationStates hasError={hasError} isValid={isValid} /> */}
+        <ValidationStates hasError={false} isValid={false} />
       </Box>
     </Box>
   );

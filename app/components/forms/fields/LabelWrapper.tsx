@@ -17,19 +17,19 @@ export default function LabelWrapper(props: LabelWrapperProps): JSX.Element {
             as="label"
             htmlFor={name}
             size={1}
-            weight={600}
+            weight={"semibold"}
             css={{ color: '$black100' }}
           >
             {label}
           </Text>
         )}
         {isOptional && (
-          <Text size={1} weight={600} css={{ color: '$black60' }}>
+          <Text size={1} weight={"semibold"} css={{ color: '$black60' }}>
             Optional
           </Text>
         )}
       </Flex>
     );
   }
-  return null;
+  return <></>;
 }

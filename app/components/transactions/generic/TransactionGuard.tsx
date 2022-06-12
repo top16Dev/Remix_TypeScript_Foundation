@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { ReactNode } from 'react';
 import { useAccount } from 'wagmi';
 
@@ -12,7 +13,7 @@ import TransactionPaneSkeleton from './TransactionPaneSkeleton';
 import TransactionConnectWallet from './TransactionConnectWallet';
 import SocialVerificationGuard from '~/components/trust-safety/page-guards/SocialVerificationGuard';
 import ApprovedCreatorGuard from '~/components/trust-safety/page-guards/ApprovedCreatorGuard';
-import { PageGuard } from '~/types/Moderation';
+import { ModerationStatus, PageGuard } from '~/types/Moderation';
 import UserModeratedGuard from '~/components/trust-safety/page-guards/UserModeratedGuard';
 import { TransactionActionButton } from './TransactionActionButtons';
 
@@ -23,7 +24,7 @@ import {
   isFlaggedForModeration,
 } from '~/utils/moderation';
 
-// import { TransactionLayoutQueryType } from '~/types/Artwork';
+import { TransactionLayoutQueryType } from '~/types/Artwork';
 
 export interface TransactionGuardProps {
   artworkQueryType: TransactionLayoutQueryType;
@@ -96,32 +97,33 @@ function RenderTransactionGuard(props: RenderTransactionGuardProps) {
   const artworkData =
     artworkQueryType === 'uuid' ? artworkDataUuid : artworkDataTokenId;
 
-  const { data: currentUser, isLoading: isCurrentUserLoading } =
-    useUserByPublicKey(
-      { publicKey: user?.address },
-      { enabled: queryStates.currentUser.enabled }
-    );
+  // const { data: currentUser, isLoading: isCurrentUserLoading } =
+  //   useUserByPublicKey(
+  //     { publicKey: user?.address },
+  //     { enabled: queryStates.currentUser.enabled }
+  //   );
 
-  const {
-    data: hasSocialVerification,
-    isLoading: isHasSocialVerificationLoading,
-  } = useHasSocialVerification(
-    { publicKey: user?.address },
-    { enabled: queryStates.socialVericiation.enabled }
-  );
+  // const {
+  //   data: hasSocialVerification,
+  //   isLoading: isHasSocialVerificationLoading,
+  // } = useHasSocialVerification(
+  //   { publicKey: user?.address },
+  //   { enabled: queryStates.socialVericiation.enabled }
+  // );
 
-  const isLoading = isAnyTrue([
-    isAllTrue([isArtworkUuidLoading, queryStates.artworkByUuid.enabled]),
-    isAllTrue([
-      isArtworkTokenIdLoading,
-      queryStates.artworkByContractTokenId.enabled,
-    ]),
-    isAllTrue([isCurrentUserLoading, queryStates.currentUser.enabled]),
-    isAllTrue([
-      isHasSocialVerificationLoading,
-      queryStates.socialVericiation.enabled,
-    ]),
-  ]);
+  // const isLoading = isAnyTrue([
+  //   isAllTrue([isArtworkUuidLoading, queryStates.artworkByUuid.enabled]),
+  //   isAllTrue([
+  //     isArtworkTokenIdLoading,
+  //     queryStates.artworkByContractTokenId.enabled,
+  //   ]),
+  //   isAllTrue([isCurrentUserLoading, queryStates.currentUser.enabled]),
+  //   isAllTrue([
+  //     isHasSocialVerificationLoading,
+  //     queryStates.socialVericiation.enabled,
+  //   ]),
+  // ]);
+  const isLoading = false;
 
   const enabled = false;
 
@@ -129,35 +131,37 @@ function RenderTransactionGuard(props: RenderTransactionGuardProps) {
     return <TransactionPaneSkeleton />;
   }
 
-  if (!user) {
-    return <TransactionConnectWallet />;
-  }
+  // if (!user) {
+  //   return <TransactionConnectWallet />;
+  // }
 
-  const hasApprovedCreatorGuard = isAllTrue([
-    !currentUser?.user?.isApprovedCreator,
-    pageGuards.includes('approved-creator'),
-  ]);
-
+  // const hasApprovedCreatorGuard = isAllTrue([
+  //   !currentUser?.user?.isApprovedCreator,
+  //   pageGuards.includes('approved-creator'),
+  // ]);
+  const hasApprovedCreatorGuard = false;
   if (hasApprovedCreatorGuard) {
     return <ApprovedCreatorGuard />;
   }
 
-  const hasSocialVerificationGuard = isAllTrue([
-    !hasSocialVerification,
-    pageGuards.includes('social-verification'),
-  ]);
+  // const hasSocialVerificationGuard = isAllTrue([
+  //   !hasSocialVerification,
+  //   pageGuards.includes('social-verification'),
+  // ]);
+  const hasSocialVerificationGuard = false;
 
   if (hasSocialVerificationGuard) {
     return <SocialVerificationGuard />;
   }
 
-  const userModerationStatus = currentUser?.user?.moderationStatus;
+  // const userModerationStatus = currentUser?.user?.moderationStatus;
+  const userModerationStatus = ModerationStatus.Active;
 
-  const hasUserModerated = isAllTrue([
-    isFlaggedForModeration(userModerationStatus),
-    pageGuards.includes('user-moderated'),
-  ]);
-
+  // const hasUserModerated = isAllTrue([
+  //   isFlaggedForModeration(userModerationStatus),
+  //   pageGuards.includes('user-moderated'),
+  // ]);
+  const hasUserModerated = false;
   if (hasUserModerated) {
     return <UserModeratedGuard userModerationStatus={userModerationStatus} />;
   }
@@ -174,7 +178,8 @@ function RenderTransactionGuard(props: RenderTransactionGuardProps) {
       <TransactionProgressPane
         key="artwork-moderated"
         status="warning"
-        title={getArtworkModerationTitle(artworkModerationStatus)}
+        // title={getArtworkModerationTitle(artworkModerationStatus)}
+        title="title"
         description={getArtworkModerationDescription(artworkData)}
         meta={
           <Box css={{ width: '100%' }}>

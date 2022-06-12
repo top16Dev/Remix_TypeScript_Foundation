@@ -45,6 +45,4 @@ const Text = styled('div', {
   },
 });
 
-export const Paragraph = styled('p', Text, {});
-
 export default Text;

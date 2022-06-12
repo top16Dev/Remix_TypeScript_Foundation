@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { compose } from 'ramda';
 import { ReactNode } from 'react';
 
@@ -10,14 +11,15 @@ export const buildTransactionLayout = (
   title: string,
   args: TransactionGuardProps
 ) =>
-  compose<JSX.Element, JSX.Element, JSX.Element>(
+  compose<JSX.Element, JSX.Element>(
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     TransactionLayoutWithCardV2({
       title,
       backgroundColor: '$black5',
       pageType: PageType.minimalLoggedIn,
-      artworkQueryType: args['artworkQueryType'],
+      // artworkQueryType: args['artworkQueryType'],
+      artworkQueryType: "tokenId",
     }),
     (page: ReactNode) => TransactionGuard(page, args)
   );

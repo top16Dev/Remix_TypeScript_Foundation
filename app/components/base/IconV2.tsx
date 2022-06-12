@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import { FunctionComponent, SVGAttributes } from 'react';
 import { VariantProps } from '@stitches/react';
 
 import { CSS, styled } from '~/stitches.config';
+import { StyledComponent } from '@stitches/react/types/styled-component';
 
 interface IconProps {
   css?: CSS;
-  icon: FunctionComponent<SVGAttributes<SVGElement>>;
+  icon: FunctionComponent<SVGAttributes<SVGElement>> | StyledComponent;
   size?: VariantProps<typeof IconContainer>['size'];
 }
 
